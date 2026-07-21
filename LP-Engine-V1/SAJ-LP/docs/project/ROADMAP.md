@@ -1,90 +1,85 @@
 # ROADMAP
+
+Dokumen ini berisi rencana pengembangan Landing Page SAJ yang dibangun menggunakan LP Engine.
+
+Roadmap digunakan untuk memantau progres pengembangan engine maupun fitur Landing Page.
+
+---
+
+# Current Status
+
+Project
+
 SAJ Landing Page
-
-LP Engine v1.0
-
----
-
-# Tujuan
-
-Dokumen ini berisi rencana pengembangan Landing Page serta LP Engine.
-
-Roadmap menjadi acuan prioritas pekerjaan untuk developer maupun AI.
-
-Tidak semua fitur harus dikerjakan sekaligus.
-
-Pengembangan dilakukan secara bertahap.
-
----
-
-# Current Version
-
-Landing Page
-
-Version
-
-2.0
 
 Engine
 
 LP Engine v1.0
 
+Landing Page Version
+
+2.1.0
+
 Status
 
 Production
 
----
+Current Phase
 
-# Development Phases
-
-## Phase 1
-Foundation
-
-Status
-
-✅ Completed
-
-Target
-
-Membangun Landing Page pertama.
-
-### Features
-
-- Single HTML
-- Responsive
-- Hero
-- Features
-- Certifications
-- Packages
-- Testimonials
-- FAQ
-- Footer
-- WhatsApp CTA
+Phase 3 ✅ Completed
 
 ---
 
-## Phase 2
-AI Documentation
+# Development Roadmap
+
+## Phase 1 — Foundation ✅
 
 Status
 
-✅ Completed
+Completed
 
 Target
 
-Membuat project mudah dipahami AI.
+Membangun Landing Page dasar menggunakan arsitektur Single HTML.
 
-### Features
+Pencapaian
 
-- README
-- CONTEXT
-- LP_ENGINE
-- AI_RULES
-- PROJECT_STRUCTURE
-- CHANGELOG
-- ROADMAP
-- AI Header
-- Section Marker
+- Single HTML Architecture.
+- Responsive Layout.
+- Hero Section.
+- Features Section.
+- Certification Section.
+- Package Section.
+- Testimonials.
+- FAQ.
+- Footer.
+- WhatsApp CTA.
+- CDN Library.
+- Vanilla HTML, CSS, dan JavaScript.
+
+---
+
+## Phase 2 — Documentation ✅
+
+Status
+
+Completed
+
+Target
+
+Membangun dokumentasi agar project mudah dipahami oleh developer maupun AI.
+
+Pencapaian
+
+- README.md
+- CONTEXT.md
+- LP_ENGINE_v1.md
+- AI_RULES.md
+- PROJECT_STRUCTURE.md
+- BRAND_GUIDE.md
+- PROMPT_GUIDE.md
+- CHANGELOG.md
+- ROADMAP.md
 
 ---
 
@@ -93,7 +88,7 @@ Engine Improvement
 
 Status
 
-🟡 Planned
+✅ Completed
 
 Prioritas
 
@@ -103,9 +98,9 @@ Target
 
 Menyempurnakan LP Engine agar lebih modular tanpa menghilangkan konsep Single HTML.
 
-### Todo
+### Features
 
-- Helper Functions
+- Helper Functions (createStars, createWaLink, createSectionHeader)
 - Component Metadata
 - Component Registry
 - ENGINE Object
@@ -115,206 +110,134 @@ Menyempurnakan LP Engine agar lebih modular tanpa menghilangkan konsep Single HT
 
 ---
 
-## Phase 4
-UI Improvement
+
+## Phase 4 — UI Improvement & Content Polish
 
 Status
 
-🟡 Planned
-
-Prioritas
-
-Tinggi
+🟡 In Progress
 
 Target
 
-Meningkatkan pengalaman pengguna.
+Meningkatkan tampilan visual, interaktivitas paket harga, serta kenyamanan pengguna di perangkat desktop & mobile.
 
-### Todo
+### Progress & Todo
 
-- Gallery Section
-- Promo Banner
-- Floating WhatsApp
-- Sticky CTA
-- Better Mobile Experience
-- Loading Animation
-- Skeleton Loading
+- [x] Item 1: Top Bar Text Promo (Non-floating)
+- [x] Item 2: Update Card Paket Harga, Gender Toggle Switch, Tombol Box Interaktif, & Section Bar Fasilitas Included dari CSV
+- [ ] Item 3: Logo Fill Loading Screen Animation
+- [ ] Item 4: Mobile Spacing & CTA Polish Optimization
 
 ---
 
-## Phase 5
-Marketing Improvement
+## Phase 5 — Content Management
 
 Status
 
-🟡 Planned
-
-Prioritas
-
-Sedang
-
-### Todo
-
-- Promo Countdown
-- Lead Magnet
-- Free Test Food Banner
-- Event Promotion
-- Campaign Landing Page
-
----
-
-## Phase 6
-SEO Improvement
-
-Status
-
-🟡 Planned
-
-Prioritas
-
-Sedang
-
-### Todo
-
-- Meta Tag
-- Open Graph
-- Twitter Card
-- Structured Data
-- FAQ Schema
-- Local Business Schema
-- Sitemap
-- Robots.txt
-
----
-
-## Phase 7
-Analytics
-
-Status
-
-🟡 Planned
-
-Prioritas
-
-Sedang
-
-### Todo
-
-- Google Analytics
-- Google Tag Manager
-- Meta Pixel
-- Conversion Tracking
-- WhatsApp Click Tracking
-- Scroll Tracking
-
----
-
-## Phase 8
-Performance
-
-Status
-
-🟡 Planned
-
-Prioritas
-
-Sedang
-
-### Todo
-
-- Lazy Loading
-- Image Optimization
-- Asset Optimization
-- CSS Cleanup
-- JavaScript Cleanup
-
----
-
-## Phase 9
-Future Engine
-
-Status
-
-🔵 Vision
+Planned
 
 Target
 
-Menjadikan LP Engine sebagai standar seluruh Landing Page perusahaan.
+Mempermudah proses perubahan konten.
 
-### Future Brand
+Rencana
 
-- SAJ
-- UMAR Travel
-- Meat Theory
-- Umar Oud
-- QurbanBerkah
-- Client Project
-
----
-
-# Priority Rules
-
-Prioritas pekerjaan:
-
-P1
-
-Critical
-
-Harus segera dikerjakan.
-
-P2
-
-Important
-
-Dikerjakan setelah P1.
-
-P3
-
-Nice to Have
-
-Tidak mendesak.
+- Struktur CONFIG yang lebih modular.
+- Validasi data CONFIG.
+- Helper untuk asset.
+- Helper untuk CTA.
+- Helper untuk formatting.
 
 ---
 
-# AI Rules
+## Phase 6 — Analytics & Marketing
 
-Ketika AI menerima tugas:
+Status
 
-Selalu cek roadmap terlebih dahulu.
+Planned
 
-Jika fitur sudah selesai:
+Target
 
-Jangan membuat ulang.
+Meningkatkan kemampuan analisis dan pemasaran.
 
-Jika fitur masih Planned:
+Rencana
 
-Ikuti prioritas phase.
-
-Jika fitur berada pada Future Engine:
-
-Jangan implementasikan tanpa diminta.
+- Google Analytics.
+- Google Tag Manager.
+- Meta Pixel.
+- Event Tracking.
+- Conversion Tracking.
+- CTA Tracking.
 
 ---
 
-# Completion Rules
+## Phase 7 — SEO Improvement
 
-Setelah sebuah phase selesai:
+Status
 
-- Ubah status menjadi Completed.
-- Tambahkan ke CHANGELOG.
-- Perbarui README bila diperlukan.
-- Perbarui CONTEXT jika ada perubahan filosofi.
+Planned
+
+Target
+
+Meningkatkan visibilitas Landing Page pada mesin pencari.
+
+Rencana
+
+- Structured Data.
+- Open Graph.
+- Twitter Card.
+- Meta Optimization.
+- Sitemap.
+- Robots.
+
+---
+
+## Phase 8 — Future Integration
+
+Status
+
+Future
+
+Target
+
+Mempersiapkan integrasi dengan sistem lain.
+
+Rencana
+
+- ERP Connector.
+- CRM Connector.
+- WhatsApp API.
+- CMS Connector.
+- AI Content Generator.
 
 ---
 
 # Long Term Vision
 
-LP Engine akan berkembang menjadi sebuah standar internal yang digunakan untuk seluruh Landing Page perusahaan.
+LP Engine akan menjadi standar pengembangan seluruh Landing Page perusahaan.
 
-Target akhirnya adalah:
+Target implementasi:
 
-- Satu arsitektur.
-- Satu workflow.
-- Satu standar dokumentasi.
-- Mudah dipelihara manusia.
-- Mudah dipelihara AI.
+- SAJ Landing Page
+- UMAR Travel
+- Meat Theory
+- Umar Oud
+- QurbanBerkah
+- Landing Page Client
+
+Seluruh project diharapkan menggunakan arsitektur, dokumentasi, dan workflow yang konsisten sehingga proses maintenance dan pengembangan menjadi lebih cepat.
+
+---
+
+# Progress Summary
+
+| Phase | Status |
+|--------|--------|
+| Phase 1 — Foundation | ✅ Completed |
+| Phase 2 — Documentation | ✅ Completed |
+| Phase 3 — Engine Improvement | ✅ Completed |
+| Phase 4 — Engine Optimization | ⏳ Planned |
+| Phase 5 — Content Management | ⏳ Planned |
+| Phase 6 — Analytics & Marketing | ⏳ Planned |
+| Phase 7 — SEO Improvement | ⏳ Planned |
+| Phase 8 — Future Integration | 🔮 Future |

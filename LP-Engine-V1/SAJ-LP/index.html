@@ -2,13 +2,16 @@
 LP ENGINE v1.0
 AI-Friendly Single HTML Architecture
 Project: SAJ Landing Page
-Version: 1.0.0
+Version: 1.2.0
 This file is organized for AI-assisted maintenance.
 Major sections:
 100 HTML
 200 CSS
 300 CONFIG
-500 COMPONENTS
+400 ENGINE OBJECT
+500 HELPER FUNCTIONS
+600 COMPONENTS
+700 RENDER ENGINE
 800 APP INITIALIZATION
 -->
 <!DOCTYPE html>
@@ -92,6 +95,24 @@ Major sections:
             box-shadow: 0 4px 12px rgba(241,176,0,0.3);
         }
 
+        /* Top Bar Custom */
+        .top-bar-saj {
+            background-color: var(--saj-green);
+            color: var(--saj-white);
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 8px 0;
+            letter-spacing: 0.5px;
+        }
+        .top-bar-saj a {
+            color: var(--saj-white);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .top-bar-saj a:hover {
+            color: var(--saj-yellow);
+        }
+
         /* Navbar Glassmorphism Effect */
         .navbar-custom {
             background-color: rgba(255, 255, 255, 0.95);
@@ -169,6 +190,99 @@ Major sections:
             border-radius: 6px;
         }
 
+        /* Package Gender Toggle Styling */
+        .gender-toggle-wrapper {
+            background-color: #e6eeee;
+            border-radius: 50px;
+            padding: 5px;
+            display: inline-flex;
+            gap: 5px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .gender-btn {
+            border: none;
+            background: transparent;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--saj-green);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .gender-btn.active {
+            background-color: var(--saj-green);
+            color: var(--saj-white);
+            box-shadow: 0 4px 12px rgba(0,51,51,0.25);
+        }
+        .gender-btn .badge-goat {
+            font-size: 0.75rem;
+            background-color: var(--saj-yellow);
+            color: var(--saj-green);
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+        }
+
+        /* Box Option Selector Buttons */
+        .box-btn {
+            border: 1px solid #ced4da;
+            background-color: #ffffff;
+            color: var(--saj-text);
+            border-radius: 12px;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .box-btn:hover {
+            border-color: var(--saj-green);
+            color: var(--saj-green);
+        }
+        .box-btn.active {
+            background-color: var(--saj-yellow);
+            border-color: var(--saj-yellow);
+            color: var(--saj-green);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(241,176,0,0.4);
+        }
+
+        /* Card Promo Tag Badge */
+        .card-promo-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 2;
+            background-color: rgba(0, 51, 51, 0.9);
+            color: var(--saj-yellow);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Inclusions Card Styling */
+        .inclusions-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7f7 100%);
+            border: 2px dashed #b2d8d8;
+            border-radius: 24px;
+        }
+        .inclusion-icon-box {
+            width: 48px;
+            height: 48px;
+            background-color: #e6eeee;
+            color: var(--saj-green);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
         /* Floating WA */
         .floating-wa {
             position: fixed;
@@ -240,6 +354,13 @@ Seluruh data website berada di bawah ini.
 Edit bagian ini untuk mengubah isi Landing Page.
 ****************************************************************/
         const config = {
+            // Top Bar Promo
+            topBar: {
+                enabled: true,
+                text: "CLAIM PROMO POTONGAN BULAN INI SEKARANG! PROMO TERBATAS!",
+                link: "#hero"
+            },
+            
             // Pengaturan Umum
             brandName: "Aqiqah Saung Abah Jajat",
             logo: "https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/logo/logo.svg",
@@ -311,45 +432,315 @@ Edit bagian ini untuk mengubah isi Landing Page.
             packages: {
                 title: "Pilihan Paket Aqiqah",
                 subtitle: "Harga terjangkau dengan berbagai pilihan paket sesuai kebutuhan Anda",
+                categories: [
+                    { id: "Perempuan", label: "Perempuan", goatInfo: "1 Ekor Domba", icon: "fa-solid fa-child-dress" },
+                    { id: "Laki-Laki", label: "Laki-Laki", goatInfo: "2 Ekor Domba", icon: "fa-solid fa-child" }
+                ],
                 items: [
                     {
+                        id: "paket-hemat",
                         name: "Paket Hemat",
-                        price: "Rp 1.500.000",
-                        // Gambar placeholder makanan
-                        image: "https://images.unsplash.com/photo-1544025162-811114cd354c?q=80&w=400&auto=format&fit=crop", 
-                        features: [
-                            "1 Ekor Domba Betina",
-                            "200 Tusuk Sate",
-                            "50 Porsi Gulai",
-                            "Sertifikat Aqiqah",
-                            "Free Risalah Aqiqah"
-                        ]
+                        tag: "PALING EKONOMIS💲",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/paket_hemat.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: 50, price: 1975000 },
+                                    { box: 75, price: 2700000 },
+                                    { box: 100, price: 3250000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: 80, price: 3600000 },
+                                    { box: 100, price: 3900000 },
+                                    { box: 150, price: 5300000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            }
+                        }
                     },
                     {
+                        id: "paket-reguler",
+                        name: "Paket Reguler",
+                        tag: "BEST SELLER ⭐",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/paket_reguler.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: 50, price: 2400000 },
+                                    { box: 75, price: 3050000 },
+                                    { box: 100, price: 4600000 },
+                                    { box: 125, price: 4300000 }
+                                ],
+                                features: [
+                                    "Box Exclusive",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Kentang Balado",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: 80, price: 4050000 },
+                                    { box: 100, price: 4450000 },
+                                    { box: 150, price: 5750000 },
+                                    { box: 200, price: 6700000 }
+                                ],
+                                features: [
+                                    "Box Exclusive",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Kentang Balado",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        id: "paket-spesial",
                         name: "Paket Spesial",
-                        price: "Rp 2.200.000",
-                        image: "https://images.unsplash.com/photo-1555126634-323283e090fa?q=80&w=400&auto=format&fit=crop", 
-                        features: [
-                            "1 Ekor Domba Jantan",
-                            "300 Tusuk Sate",
-                            "75 Porsi Gulai",
-                            "Sertifikat & Souvenir Eksklusif",
-                            "Gratis Ongkir (Jarak Tertentu)"
-                        ]
+                        tag: "PALING LENGKAP🤤",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/paket_spesial.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: 50, price: 2950000 },
+                                    { box: 75, price: 3800000 },
+                                    { box: 100, price: 4650000 },
+                                    { box: 125, price: 5500000 }
+                                ],
+                                features: [
+                                    "Box Exclusive",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Olahan Ayam (Ayam Goreng/Bakar)",
+                                    "Kentang Balado",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: 80, price: 4800000 },
+                                    { box: 100, price: 5400000 },
+                                    { box: 150, price: 7150000 },
+                                    { box: 200, price: 8800000 }
+                                ],
+                                features: [
+                                    "Box Exclusive",
+                                    "Nasi Putih",
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)",
+                                    "Olahan Ayam (Ayam Goreng/Bakar)",
+                                    "Kentang Balado",
+                                    "Kerupuk Udang",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            }
+                        }
                     },
                     {
-                        name: "Paket Sultan",
-                        price: "Rp 3.500.000",
-                        image: "https://images.unsplash.com/photo-1560614382-747f48e3532c?q=80&w=400&auto=format&fit=crop", 
-                        features: [
-                            "1 Ekor Domba Jantan Super",
-                            "400 Tusuk Sate",
-                            "100 Porsi Gulai + Tongseng",
-                            "Sertifikat Frame, Boneka Lucu",
-                            "Gratis Ongkir & Dokumentasi Video"
-                        ]
+                        id: "kebuli-basmati",
+                        name: "Paket Kebuli Basmati",
+                        tag: "",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/kebuli_basmati.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: 50, price: 2950000 },
+                                    { box: 75, price: 3900000 },
+                                    { box: 100, price: 4800000 },
+                                    { box: 125, price: 5700000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Kebuli Basmati",
+                                    "Daging Goreng Rempah",
+                                    "Kentang Balado",
+                                    "Emping",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: 80, price: 4900000 },
+                                    { box: 100, price: 5650000 },
+                                    { box: 150, price: 7550000 },
+                                    { box: 200, price: 9350000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Kebuli Basmati",
+                                    "Daging Goreng Rempah",
+                                    "Kentang Balado",
+                                    "Emping",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        id: "kebuli-lokal",
+                        name: "Paket Kebuli Lokal",
+                        tag: "",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/kebuli_lokal.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: 50, price: 2600000 },
+                                    { box: 75, price: 3450000 },
+                                    { box: 100, price: 4250000 },
+                                    { box: 125, price: 4950000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Kebuli Lokal",
+                                    "Daging Goreng Rempah",
+                                    "Kentang Balado",
+                                    "Emping",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: 80, price: 4500000 },
+                                    { box: 100, price: 5050000 },
+                                    { box: 150, price: 6750000 },
+                                    { box: 200, price: 8350000 }
+                                ],
+                                features: [
+                                    "Box Bento Minimalist",
+                                    "Nasi Kebuli Lokal",
+                                    "Daging Goreng Rempah",
+                                    "Kentang Balado",
+                                    "Emping",
+                                    "Minuman ringan",
+                                    "Mix Vegetables",
+                                    "Alat Makan Higienis"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        id: "hewan-masak",
+                        name: "Paket Hewan Masak",
+                        tag: "",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/hewan_masak.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: "-", price: "Hubungi Kami" }
+                                ],
+                                features: [
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: "-", price: "Hubungi Kami" }
+                                ],
+                                features: [
+                                    "Olahan Daging (Sate/Teriyaki/Rendang)",
+                                    "Olahan Tulang (Gulai/Sop/Tongseng)"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        id: "karkas",
+                        name: "Paket Karkas",
+                        tag: "",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/karkas.webp",
+                        variants: {
+                            "Perempuan": {
+                                goats: 1,
+                                options: [
+                                    { box: "-", price: "Hubungi Kami" }
+                                ],
+                                features: [
+                                    "Daging & Tulang Domba Segar"
+                                ]
+                            },
+                            "Laki-Laki": {
+                                goats: 2,
+                                options: [
+                                    { box: "-", price: "Hubungi Kami" }
+                                ],
+                                features: [
+                                    "Daging & Tulang Domba Segar"
+                                ]
+                            }
+                        }
                     }
-                ]
+                ],
+                inclusions: {
+                    items: [
+                        { icon: "fa-solid fa-photo-film", text: "Dokumentasi Foto & Video Penyembelihan" },
+                        { icon: "fa-solid fa-scroll", text: "Sertifikat Aqiqah + Frame" },
+                        { icon: "fa-solid fa-gift", text: "Boneka Domba & Souvenir menarik lainnya" },
+                        { icon: "fa-solid fa-box-open", text: "Free Plastik Pembungkus untuk setiap Box-Nya*" },
+                        { icon: "fa-solid fa-tags", text: "Free Kartu Ucapan / Label Custom untuk setiap Box-Nya*" },
+                        { icon: "fa-solid fa-truck-fast", text: "Free Ongkir SEJABODETABEK**" }
+                    ],
+                    notes: [
+                        "*Plastik pembungkus, & Kartu Ucapan / Label Custom tidak tersedia untuk paket Karkas & Hewan Masak",
+                        "**Free Ongkir mengikuti ketentuan yang berlaku",
+                        "***Domba secara umum menggunakan domba betina, untuk upgrade silahkan hubungi CS kami"
+                    ]
+                }
             },
             
             // Testimoni (Slider)
@@ -424,17 +815,90 @@ Edit bagian ini untuk mengubah isi Landing Page.
         };
 
 
-        /**
-         * ----------------------------------------------------
-         * 2. RENDER LOGIC
-         * (Bagian ini murni Vanilla JS, tidak perlu diedit
-         *  kecuali ingin merubah struktur/layout html nya)
-         * ----------------------------------------------------
-         */
+        /****************************************************************
+400 ENGINE OBJECT
+Global namespace LP Engine.
+Menyimpan metadata, registry component, dan render queue.
+SAFE TO EDIT: NO
+****************************************************************/
+        const ENGINE = {
+            version: '1.0',
+            project: 'SAJ Landing Page',
+            registry: [],
+            renderQueue: [],
+        };
+
 
         /****************************************************************
-500 COMPONENTS
+500 HELPER FUNCTIONS
+Fungsi utilitas reusable yang dapat digunakan oleh seluruh Component.
+SAFE TO EDIT: YES
+****************************************************************/
+
+        // Generate HTML bintang dari angka rating (1-5)
+        const createStars = (rating) => {
+            return Array(rating).fill('<i class="fa-solid fa-star"></i>').join('');
+        };
+
+        // Format angka ke format Rupiah (contoh: 1975000 -> "Rp 1.975.000")
+        const formatRupiah = (val) => {
+            if (typeof val === 'number') {
+                return 'Rp ' + val.toLocaleString('id-ID');
+            }
+            return val;
+        };
+
+        // Generate URL WhatsApp dengan pesan opsional
+        const createWaLink = (number, message = '') => {
+            const encoded = message ? '?text=' + encodeURIComponent(message) : '';
+            return 'https://wa.me/' + number + encoded;
+        };
+
+        // Generate HTML header section standar (judul + garis kuning + opsional subtitle)
+        const createSectionHeader = (title, subtitle = '', theme = 'dark') => {
+            const titleColor = theme === 'light' ? 'text-white' : 'text-primary-saj';
+            const subtitleHtml = subtitle ? `<p class="text-muted fs-5 mt-2">${subtitle}</p>` : '';
+            return `
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="fw-bold ${titleColor} display-6">${title}</h2>
+                    ${subtitleHtml}
+                    <div class="bg-secondary-saj mx-auto mt-3" style="width: 80px; height: 6px; border-radius: 3px;"></div>
+                </div>
+            `;
+        };
+
+
+        /****************************************************************
+600 COMPONENTS
 Seluruh tampilan website dibangun dari Component.
+Setiap Component menghasilkan HTML berdasarkan CONFIG.
+SAFE TO EDIT: YES
+****************************************************************/
+        /****************************************************************
+COMPONENT: renderTopBar
+DESCRIPTION: Top bar non-floating di paling atas halaman dengan warna hijau SAJ.
+DEPENDS_ON: config.topBar
+SAFE TO EDIT: YES
+****************************************************************/
+        const renderTopBar = () => {
+            if (!config.topBar || !config.topBar.enabled) return '';
+            return `
+                <div class="top-bar-saj text-center">
+                    <div class="container">
+                        <a href="${config.topBar.link}" class="d-inline-block text-decoration-none">
+                            <i class="fa-solid fa-fire text-secondary-saj me-2"></i>${config.topBar.text}
+                        </a>
+                    </div>
+                </div>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderTopBar', fn: renderTopBar, description: 'Top bar promo non-floating' });
+
+        /****************************************************************
+COMPONENT: renderNavbar
+DESCRIPTION: Sticky navigation bar dengan logo, menu, dan tombol WA.
+DEPENDS_ON: config.logo, config.brandName, config.whatsapp
+SAFE TO EDIT: YES
 ****************************************************************/
         const renderNavbar = () => `
             <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
@@ -461,7 +925,14 @@ Seluruh tampilan website dibangun dari Component.
                 </div>
             </nav>
         `;
+        ENGINE.registry.push({ name: 'renderNavbar', fn: renderNavbar, description: 'Sticky navigation bar' });
 
+        /****************************************************************
+COMPONENT: renderHero
+DESCRIPTION: Hero section utama dengan CTA, statistik, dan gambar produk.
+DEPENDS_ON: config.hero, CountUp.js, Typed.js
+SAFE TO EDIT: YES
+****************************************************************/
         const renderHero = () => `
             <section id="hero" class="hero-section">
                 <div class="hero-shape"></div>
@@ -503,7 +974,14 @@ Seluruh tampilan website dibangun dari Component.
                 </div>
             </section>
         `;
+        ENGINE.registry.push({ name: 'renderHero', fn: renderHero, description: 'Hero section utama' });
 
+        /****************************************************************
+COMPONENT: renderFeatures
+DESCRIPTION: Grid keunggulan layanan dan logo sertifikasi.
+DEPENDS_ON: config.features
+SAFE TO EDIT: YES
+****************************************************************/
         const renderFeatures = () => `
             <section id="features" class="py-5 bg-white">
                 <div class="container py-5">
@@ -541,42 +1019,211 @@ Seluruh tampilan website dibangun dari Component.
                 </div>
             </section>
         `;
+        ENGINE.registry.push({ name: 'renderFeatures', fn: renderFeatures, description: 'Grid keunggulan dan logo sertifikasi' });
 
-        const renderPackages = () => `
+        /****************************************************************
+COMPONENT: renderPackages
+DESCRIPTION: Grid kartu paket harga aqiqah dengan gender toggle, box selector, dan inclusions bar.
+DEPENDS_ON: config.packages, config.whatsapp, formatRupiah()
+SAFE TO EDIT: YES
+****************************************************************/
+        window.activeGender = 'Perempuan';
+        window.selectedBoxes = {};
+
+        const renderPackages = () => {
+            const pkgs = config.packages;
+            const currentGender = window.activeGender || 'Perempuan';
+            const isInteractive = !!window.isPackageInteractive;
+            const getAos = (delay = 0) => isInteractive ? 'class="aos-init aos-animate"' : `data-aos="fade-up" data-aos-delay="${delay}"`;
+
+            return `
             <section id="paket" class="py-5" style="background-color: #f2f7f7;">
                 <div class="container py-5">
-                    <div class="text-center mb-5" data-aos="fade-up">
-                        <h2 class="fw-bold text-primary-saj display-6">${config.packages.title}</h2>
-                        <p class="text-muted fs-5 mt-2">${config.packages.subtitle}</p>
+                    <!-- Title & Subtitle -->
+                    <div class="text-center mb-4" ${getAos(0)}>
+                        <h2 class="fw-bold text-primary-saj display-6">${pkgs.title}</h2>
+                        <p class="text-muted fs-5 mt-2">${pkgs.subtitle}</p>
                         <div class="bg-secondary-saj mx-auto mt-3" style="width: 80px; height: 6px; border-radius: 3px;"></div>
                     </div>
+
+                    <!-- Gender Toggle Switch -->
+                    <div class="text-center mb-5" ${getAos(100)}>
+                        <div class="gender-toggle-wrapper">
+                            ${pkgs.categories.map(cat => `
+                                <button type="button" 
+                                    class="gender-btn ${cat.id === currentGender ? 'active' : ''}" 
+                                    onclick="setPackageGender('${cat.id}')">
+                                    <i class="${cat.icon} me-1"></i> ${cat.label}
+                                    <span class="badge-goat">${cat.goatInfo}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Package Cards Grid -->
                     <div class="row g-4 justify-content-center">
-                        ${config.packages.items.map((pkg, index) => `
-                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${index * 150}">
-                                <div class="saj-card text-center">
-                                    <img src="${pkg.image}" class="img-fluid w-100" alt="${pkg.name}" style="height: 220px; object-fit: cover;">
-                                    <div class="p-4 p-xl-5">
-                                        <h3 class="fw-bold text-primary-saj fs-4">${pkg.name}</h3>
-                                        <h2 class="fw-bold text-secondary-saj mb-4">${pkg.price}</h2>
-                                        <ul class="list-unstyled mb-4 text-start text-muted">
-                                            ${pkg.features.map(f => `
-                                                <li class="mb-3 border-bottom pb-2">
-                                                    <i class="fa-solid fa-circle-check text-success me-2"></i> ${f}
-                                                </li>
-                                            `).join('')}
-                                        </ul>
-                                        <a href="https://wa.me/${config.whatsapp}?text=Halo%20SAJ,%20saya%20tertarik%20dengan%20${encodeURIComponent(pkg.name)}" class="btn btn-primary-saj w-100 py-3">
-                                            <i class="fa-brands fa-whatsapp me-2"></i> Pesan Paket Ini
-                                        </a>
+                        ${pkgs.items.map((pkg, index) => {
+                            const variant = pkg.variants[currentGender];
+                            if (!variant) return '';
+
+                            // Default select first box option if not set
+                            if (!window.selectedBoxes[pkg.id]) {
+                                window.selectedBoxes[pkg.id] = variant.options[0].box;
+                            }
+                            const currentBox = window.selectedBoxes[pkg.id];
+                            
+                            // Find active option
+                            let selectedOpt = variant.options.find(o => o.box === currentBox);
+                            if (!selectedOpt) {
+                                selectedOpt = variant.options[0];
+                                window.selectedBoxes[pkg.id] = selectedOpt.box;
+                            }
+
+                            const formattedPrice = formatRupiah(selectedOpt.price);
+                            const isContactPrice = selectedOpt.price === "Hubungi Kami";
+                            const waText = `Halo SAJ, saya berminat order ${pkg.name} (${currentGender} - ${variant.goats} Domba${currentBox !== '-' ? ', ' + currentBox + ' Box' : ''}). Mohon info selengkapnya.`;
+                            const waUrl = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(waText)}`;
+
+                            return `
+                            <div class="col-lg-4 col-md-6" ${getAos((index % 3) * 100)}>
+                                <div class="saj-card text-center position-relative d-flex flex-column">
+                                    ${pkg.tag ? `<div class="card-promo-tag">${pkg.tag}</div>` : ''}
+                                    
+                                    <img src="${pkg.image}" class="img-fluid w-100" alt="${pkg.name}" style="height: 200px; object-fit: cover;">
+                                    
+                                    <div class="p-4 p-xl-4 flex-grow-1 d-flex flex-column">
+                                        <!-- Card Title -->
+                                        <h3 class="fw-bold text-primary-saj fs-4 mb-2">${pkg.name}</h3>
+                                        
+                                        <!-- Goat Count Badge -->
+                                        <div class="mb-3">
+                                            <span class="badge bg-light text-success border px-3 py-2 rounded-pill fw-bold">
+                                                <i class="fa-solid fa-check me-1"></i> ${variant.goats} Ekor Domba/Kambing
+                                            </span>
+                                        </div>
+
+                                        <!-- Price Section -->
+                                        <div class="my-2">
+                                            <span class="text-muted small d-block mb-1">Estimasi Total Harga</span>
+                                            <h2 class="fw-bold text-primary-saj mb-0" style="font-size: 1.85rem; letter-spacing: -0.5px;">
+                                                ${formattedPrice}
+                                            </h2>
+                                        </div>
+
+                                        <!-- Box Selector (If Box Options exist) -->
+                                        ${currentBox !== '-' ? `
+                                            <div class="my-3 p-3 bg-light rounded-3 text-start">
+                                                <label class="form-label small fw-bold text-muted mb-2 d-block text-center">Pilih Jumlah Box Nasi:</label>
+                                                <div class="d-flex flex-wrap justify-content-center gap-2">
+                                                    ${variant.options.map(opt => `
+                                                        <button type="button" 
+                                                            class="box-btn ${opt.box === currentBox ? 'active' : ''}" 
+                                                            onclick="setPackageBox('${pkg.id}', ${opt.box})">
+                                                            ${opt.box} Box
+                                                        </button>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+                                        ` : '<div class="my-3"></div>'}
+
+                                        <!-- Features / Package Contents List -->
+                                        <div class="text-start my-3 flex-grow-1">
+                                            <h6 class="fw-bold text-primary-saj small text-uppercase mb-2" style="letter-spacing: 0.5px;">Isi Menu Paket:</h6>
+                                            <ul class="list-unstyled mb-0 small text-muted">
+                                                ${variant.features.map(f => `
+                                                    <li class="mb-2 d-flex align-items-start">
+                                                        <i class="fa-solid fa-circle-check text-success me-2 mt-1 flex-shrink-0"></i>
+                                                        <span>${f}</span>
+                                                    </li>
+                                                `).join('')}
+                                            </ul>
+                                        </div>
+
+                                        <!-- CTA Order Button -->
+                                        <div class="mt-auto pt-3 border-top">
+                                            <a href="${waUrl}" target="_blank" class="btn btn-primary-saj w-100 py-3">
+                                                <i class="fa-brands fa-whatsapp me-2 fs-5"></i> ${isContactPrice ? 'Tanya CS via WA' : 'Pesan Paket Ini'}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        `).join('')}
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- Inclusions Section Bar -->
+                    <div class="row mt-5" ${getAos(0)}>
+                        <div class="col-12">
+                            <div class="inclusions-card p-4 p-md-5">
+                                <div class="text-center mb-4">
+                                    <p class="fw-bold text-primary-saj display-6 mb-0" style="font-size:1.3rem;">Setiap pemesanan paket aqiqah di SAJ otomatis mendapatkan fasilitas gratis berikut:</p>
+                                </div>
+                                <div class="row g-3 justify-content-center mb-4">
+                                    ${pkgs.inclusions.items.map(inc => `
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="d-flex align-items-center bg-white p-3 rounded-4 shadow-sm border h-100">
+                                                <div class="inclusion-icon-box me-3">
+                                                    <i class="${inc.icon}"></i>
+                                                </div>
+                                                <span class="fw-bold text-primary-saj small">${inc.text}</span>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                <!-- Footnotes / Ketentuan Segment -->
+                                <div class="border-top pt-3 text-center">
+                                    <ul class="list-unstyled mb-0 small text-muted d-inline-block text-start" style="font-size: 0.8rem;">
+                                        ${pkgs.inclusions.notes.map(note => `
+                                            <li class="mb-1">${note}</li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        `;
+            `;
+        };
 
+        // Interactive Handlers for Packages
+        window.setPackageGender = (gender) => {
+            window.activeGender = gender;
+            window.isPackageInteractive = true;
+            const container = document.getElementById('paket');
+            if (container) {
+                const temp = document.createElement('div');
+                temp.innerHTML = renderPackages();
+                container.replaceWith(temp.firstElementChild);
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }
+        };
+
+        window.setPackageBox = (pkgId, boxCount) => {
+            window.selectedBoxes[pkgId] = boxCount;
+            window.isPackageInteractive = true;
+            const container = document.getElementById('paket');
+            if (container) {
+                const temp = document.createElement('div');
+                temp.innerHTML = renderPackages();
+                container.replaceWith(temp.firstElementChild);
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }
+        };
+        ENGINE.registry.push({ name: 'renderPackages', fn: renderPackages, description: 'Grid kartu paket harga' });
+
+        /****************************************************************
+COMPONENT: renderTestimonials
+DESCRIPTION: Slider testimoni pelanggan menggunakan Swiper.js.
+DEPENDS_ON: config.testimonials, Swiper.js, createStars()
+SAFE TO EDIT: YES
+****************************************************************/
         const renderTestimonials = () => `
             <section id="testimoni" class="py-5 bg-primary-saj text-white" style="position:relative; overflow:hidden;">
                 <!-- Decorative element -->
@@ -594,7 +1241,7 @@ Seluruh tampilan website dibangun dari Component.
                                 <div class="swiper-slide">
                                     <div class="bg-white text-dark p-4 p-xl-5 rounded-4 shadow mx-2 h-100 d-flex flex-column">
                                         <div class="text-secondary-saj mb-3 fs-5">
-                                            ${Array(testi.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
+                                            ${createStars(testi.rating)}
                                         </div>
                                         <p class="fst-italic mb-4 flex-grow-1 text-muted">"${testi.text}"</p>
                                         <div class="d-flex align-items-center mt-auto">
@@ -612,7 +1259,14 @@ Seluruh tampilan website dibangun dari Component.
                 </div>
             </section>
         `;
+        ENGINE.registry.push({ name: 'renderTestimonials', fn: renderTestimonials, description: 'Slider testimoni pelanggan' });
 
+        /****************************************************************
+COMPONENT: renderFAQ
+DESCRIPTION: Accordion FAQ dengan pertanyaan dan jawaban umum.
+DEPENDS_ON: config.faq, Bootstrap Accordion
+SAFE TO EDIT: YES
+****************************************************************/
         const renderFAQ = () => `
             <section id="faq" class="py-5 bg-white">
                 <div class="container py-5">
@@ -644,7 +1298,14 @@ Seluruh tampilan website dibangun dari Component.
                 </div>
             </section>
         `;
+        ENGINE.registry.push({ name: 'renderFAQ', fn: renderFAQ, description: 'Accordion FAQ' });
 
+        /****************************************************************
+COMPONENT: renderFooter
+DESCRIPTION: Footer dengan alamat, peta, quicklink, sosmed, kontak, dan copyright.
+DEPENDS_ON: config.footer, config.logo, config.brandName, config.whatsapp
+SAFE TO EDIT: YES
+****************************************************************/
         const renderFooter = () => `
             <footer class="bg-dark text-white pt-5 pb-4 mt-5">
                 <style>
@@ -732,75 +1393,107 @@ Seluruh tampilan website dibangun dari Component.
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         `;
+        ENGINE.registry.push({ name: 'renderFooter', fn: renderFooter, description: 'Footer dengan peta, quicklink, sosmed, dan kontak' });
 
-        /**
-         * ----------------------------------------------------
-         * 3. INISIALISASI (Jalankan semua fungsi)
-         * ----------------------------------------------------
-         */
+
+        /****************************************************************
+700 RENDER ENGINE
+Menyusun seluruh Component menjadi satu halaman utuh.
+Menjalankan setiap Component sesuai urutan renderQueue.
+SAFE TO EDIT: NO
+****************************************************************/
+
+        // Daftarkan urutan render component
+        ENGINE.renderQueue = [
+            renderTopBar,
+            renderNavbar,
+            renderHero,
+            renderFeatures,
+            renderPackages,
+            renderTestimonials,
+            renderFAQ,
+            renderFooter,
+        ];
+
+        // Jalankan seluruh Component sesuai urutan queue
+        const runRenderEngine = () => {
+            const app = document.getElementById('app');
+            const html = ENGINE.renderQueue.map(fn => {
+                try {
+                    return fn();
+                } catch (e) {
+                    console.error('[LP Engine] Error rendering ' + fn.name + ':', e);
+                    return '';
+                }
+            }).join('');
+            app.innerHTML = html;
+        };
+
+
         /****************************************************************
 800 APP INITIALIZATION
 Website mulai berjalan dari sini.
+Urutan: Render -> Library Init.
+SAFE TO EDIT: NO
 ****************************************************************/
-        document.addEventListener('DOMContentLoaded', () => {
-            const app = document.getElementById('app');
-            
-            // Gabungkan semua komponen HTML
-            app.innerHTML = `
-                ${renderNavbar()}
-                ${renderHero()}
-                ${renderFeatures()}
-                ${renderPackages()}
-                ${renderTestimonials()}
-                ${renderFAQ()}
-                ${renderFooter()}
-            `;
 
-            // Inisialisasi AOS (Animasi Scroll)
-            AOS.init({
-                duration: 800, // Durasi animasi
-                once: true,    // Hanya diputar sekali saat di-scroll
-                offset: 50     // Jarak scroll sebelum animasi jalan
-            });
+        // Inisialisasi seluruh library eksternal
+        const initLibraries = () => {
 
-            // Inisialisasi Swiper (Carousel Testimoni)
-            new Swiper(".mySwiper", {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                grabCursor: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                breakpoints: {
-                    // Mobile
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    // Desktop
-                    1024: {
-                        slidesPerView: 3,
+            // AOS (Animasi Scroll)
+            try {
+                AOS.init({ duration: 800, once: true, offset: 50 });
+            } catch (e) {
+                console.error('[LP Engine] AOS gagal diinisialisasi:', e);
+            }
+
+            // Swiper (Carousel Testimoni)
+            try {
+                new Swiper('.mySwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    grabCursor: true,
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    breakpoints: {
+                        768:  { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
                     }
-                }
-            });
-
-            // Inisialisasi CountUp.js
-            if(typeof countUp !== 'undefined') {
-                const yearCount = new countUp.CountUp('count-year', config.hero.stats.year, { useGrouping: false, duration: 2.5 });
-                if (!yearCount.error) { yearCount.start(); } else { console.error(yearCount.error); }
-                
-                const customersCount = new countUp.CountUp('count-customers', config.hero.stats.customers, { duration: 3 });
-                if (!customersCount.error) { customersCount.start(); } else { console.error(customersCount.error); }
-            }
-
-            // Inisialisasi Typed.js
-            if(typeof Typed !== 'undefined') {
-                new Typed('#typed-rating', {
-                    strings: [config.hero.stats.rating],
-                    typeSpeed: 50,
-                    showCursor: false
                 });
+            } catch (e) {
+                console.error('[LP Engine] Swiper gagal diinisialisasi:', e);
             }
+
+            // CountUp.js (Angka Statistik Hero)
+            try {
+                if (typeof countUp !== 'undefined') {
+                    const yearCount = new countUp.CountUp('count-year', config.hero.stats.year, { useGrouping: false, duration: 2.5 });
+                    if (!yearCount.error) { yearCount.start(); } else { console.error(yearCount.error); }
+
+                    const customersCount = new countUp.CountUp('count-customers', config.hero.stats.customers, { duration: 3 });
+                    if (!customersCount.error) { customersCount.start(); } else { console.error(customersCount.error); }
+                }
+            } catch (e) {
+                console.error('[LP Engine] CountUp gagal diinisialisasi:', e);
+            }
+
+            // Typed.js (Animasi Teks Rating)
+            try {
+                if (typeof Typed !== 'undefined') {
+                    new Typed('#typed-rating', {
+                        strings: [config.hero.stats.rating],
+                        typeSpeed: 50,
+                        showCursor: false,
+                    });
+                }
+            } catch (e) {
+                console.error('[LP Engine] Typed.js gagal diinisialisasi:', e);
+            }
+        };
+
+        // Entry point aplikasi
+        document.addEventListener('DOMContentLoaded', () => {
+            runRenderEngine();
+            initLibraries();
         });
     </script>
 </body>
