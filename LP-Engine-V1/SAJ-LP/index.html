@@ -16,29 +16,30 @@ Major sections:
 -->
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAJ - Layanan Aqiqah Terbaik</title>
-    
+
     <!-- Google Fonts: Quicksand for playful modern -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <!-- ========================================================= -->
-<!-- 200 CSS -->
-<!-- ========================================================= -->
+    <!-- 200 CSS -->
+    <!-- ========================================================= -->
     <style>
         :root {
             /* TEMA WARNA BRAND */
@@ -57,11 +58,22 @@ Major sections:
         }
 
         /* Utility Classes Custom */
-        .text-primary-saj { color: var(--saj-green) !important; }
-        .text-secondary-saj { color: var(--saj-yellow) !important; }
-        .bg-primary-saj { background-color: var(--saj-green) !important; }
-        .bg-secondary-saj { background-color: var(--saj-yellow) !important; }
-        
+        .text-primary-saj {
+            color: var(--saj-green) !important;
+        }
+
+        .text-secondary-saj {
+            color: var(--saj-yellow) !important;
+        }
+
+        .bg-primary-saj {
+            background-color: var(--saj-green) !important;
+        }
+
+        .bg-secondary-saj {
+            background-color: var(--saj-yellow) !important;
+        }
+
         /* Tombol Custom (Rounded / Playful) */
         .btn-primary-saj {
             background-color: var(--saj-green);
@@ -72,11 +84,12 @@ Major sections:
             font-weight: 600;
             transition: all 0.3s ease;
         }
+
         .btn-primary-saj:hover {
             background-color: #002222;
             color: var(--saj-yellow);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,51,51,0.2);
+            box-shadow: 0 4px 12px rgba(0, 51, 51, 0.2);
         }
 
         .btn-secondary-saj {
@@ -88,11 +101,12 @@ Major sections:
             font-weight: 700;
             transition: all 0.3s ease;
         }
+
         .btn-secondary-saj:hover {
             background-color: #e0a300;
             color: var(--saj-green);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(241,176,0,0.3);
+            box-shadow: 0 4px 12px rgba(241, 176, 0, 0.3);
         }
 
         /* Top Bar Custom */
@@ -104,11 +118,13 @@ Major sections:
             padding: 8px 0;
             letter-spacing: 0.5px;
         }
+
         .top-bar-saj a {
             color: var(--saj-white);
             text-decoration: underline;
             transition: color 0.2s ease;
         }
+
         .top-bar-saj a:hover {
             color: var(--saj-yellow);
         }
@@ -117,10 +133,10 @@ Major sections:
         .navbar-custom {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
             padding: 15px 0;
         }
-        
+
         /* Hero Section */
         .hero-section {
             padding: 120px 0 80px 0;
@@ -128,7 +144,7 @@ Major sections:
             position: relative;
             overflow: hidden;
         }
-        
+
         /* Playful Shape di belakang Hero */
         .hero-shape {
             position: absolute;
@@ -145,18 +161,20 @@ Major sections:
         /* Cards untuk Fitur & Harga */
         .saj-card {
             background: var(--saj-white);
-            border-radius: 24px; /* Sudut melengkung yang lebih playful */
+            border-radius: 24px;
+            /* Sudut melengkung yang lebih playful */
             border: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             overflow: hidden;
         }
+
         .saj-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,51,51,0.1);
+            box-shadow: 0 15px 40px rgba(0, 51, 51, 0.1);
         }
-        
+
         /* Ikon Kotak */
         .icon-box {
             width: 80px;
@@ -171,6 +189,7 @@ Major sections:
             margin: 0 auto 20px auto;
             transition: transform 0.3s ease;
         }
+
         .saj-card:hover .icon-box {
             transform: rotate(10deg) scale(1.1);
             background-color: var(--saj-yellow);
@@ -183,6 +202,7 @@ Major sections:
             background-color: #fff;
             opacity: 0.5;
         }
+
         .swiper-pagination-bullet-active {
             background-color: var(--saj-yellow) !important;
             opacity: 1;
@@ -197,8 +217,9 @@ Major sections:
             padding: 5px;
             display: inline-flex;
             gap: 5px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         .gender-btn {
             border: none;
             background: transparent;
@@ -210,11 +231,13 @@ Major sections:
             cursor: pointer;
             font-size: 0.95rem;
         }
+
         .gender-btn.active {
             background-color: var(--saj-green);
             color: var(--saj-white);
-            box-shadow: 0 4px 12px rgba(0,51,51,0.25);
+            box-shadow: 0 4px 12px rgba(0, 51, 51, 0.25);
         }
+
         .gender-btn .badge-goat {
             font-size: 0.75rem;
             background-color: var(--saj-yellow);
@@ -236,16 +259,18 @@ Major sections:
             transition: all 0.2s ease;
             cursor: pointer;
         }
+
         .box-btn:hover {
             border-color: var(--saj-green);
             color: var(--saj-green);
         }
+
         .box-btn.active {
             background-color: var(--saj-yellow);
             border-color: var(--saj-yellow);
             color: var(--saj-green);
             font-weight: 700;
-            box-shadow: 0 2px 8px rgba(241,176,0,0.4);
+            box-shadow: 0 2px 8px rgba(241, 176, 0, 0.4);
         }
 
         /* Card Promo Tag Badge */
@@ -261,7 +286,7 @@ Major sections:
             padding: 6px 14px;
             border-radius: 20px;
             backdrop-filter: blur(4px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
         /* Inclusions Card Styling */
@@ -270,6 +295,7 @@ Major sections:
             border: 2px dashed #b2d8d8;
             border-radius: 24px;
         }
+
         .inclusion-icon-box {
             width: 48px;
             height: 48px;
@@ -297,25 +323,413 @@ Major sections:
             align-items: center;
             justify-content: center;
             font-size: 38px;
-            box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             z-index: 1000;
             text-decoration: none;
             transition: transform 0.3s;
         }
+
         .floating-wa:hover {
             transform: scale(1.1);
             color: white;
         }
-        
+
         /* Accordion Custom */
         .accordion-button:not(.collapsed) {
             color: var(--saj-green);
             background-color: #e6eeee;
             box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
         }
+
+        /* Loading Screen Animation */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--saj-green);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo-fill-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-fill-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            animation: pulseGlow 1.8s infinite ease-in-out;
+        }
+
+        .logo-fill-bar-wrapper {
+            width: 160px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .logo-fill-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--saj-yellow), #ffe066);
+            border-radius: 10px;
+            animation: logoFill 1.5s ease-in-out forwards;
+        }
+
+        @keyframes logoFill {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 8px rgba(241, 176, 0, 0.4));
+            }
+
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 20px rgba(241, 176, 0, 0.8));
+            }
+        }
+
+        /* =========================================
+           TESTIMONIALS FOCUS MODE STYLING
+           ========================================= */
+
+        /* === State Awal: Preview Cards (Slider) === */
+        .testi-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 22px 20px;
+            cursor: pointer;
+            transition: background 0.28s ease, border-color 0.28s ease,
+                transform 0.28s ease, box-shadow 0.28s ease;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testi-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(241, 176, 0, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .testi-card.is-active {
+            background: rgba(241, 176, 0, 0.15);
+            border-color: var(--saj-yellow);
+            box-shadow: 0 8px 24px rgba(241, 176, 0, 0.25);
+        }
+
+        .testi-card-stars {
+            color: var(--saj-yellow);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .testi-card-text {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.8rem;
+            line-height: 1.55;
+            font-style: italic;
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        .testi-card-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 12px;
+        }
+
+        .testi-card-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--saj-yellow);
+            color: var(--saj-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .testi-card-name {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .testi-card-location {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.7rem;
+        }
+
+        /* === Hero Card (Focus Mode) === */
+        .testi-hero-wrapper {
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                opacity 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .testi-hero-wrapper.is-visible {
+            max-height: 600px;
+            opacity: 1;
+        }
+
+        .testi-hero-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+            border: 3px solid var(--saj-yellow);
+            max-width: 740px;
+            margin: 0 auto 32px auto;
+            position: relative;
+        }
+
+        .testi-hero-body {
+            transition: opacity 0.22s ease, transform 0.22s ease;
+        }
+
+        .testi-hero-body.is-fading {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        .testi-hero-stars {
+            color: var(--saj-yellow);
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+        }
+
+        .testi-hero-text {
+            color: #1a1a1a;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .testi-hero-text.is-full {
+            font-weight: 500;
+            font-size: 0.97rem;
+        }
+
+        .testi-hero-name {
+            color: var(--saj-green);
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .testi-hero-location {
+            color: #888;
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+        }
+
+        .badge-google-review {
+            background-color: #f8f9fa;
+            color: #5f6368;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-read-review {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--saj-green);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 9px 22px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease,
+                box-shadow 0.25s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-read-review:hover {
+            background: var(--saj-yellow);
+            color: var(--saj-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(241, 176, 0, 0.35);
+        }
+
+        .btn-close-review {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: #888;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            padding: 7px 18px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-close-review:hover {
+            background: #f0f0f0;
+            border-color: #bbb;
+        }
+
+        @media (max-width: 768px) {
+            .testi-hero-card {
+                padding: 24px 18px;
+                border-width: 2px;
+            }
+
+            .testi-hero-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* =========================================
+           MOBILE SPACING & CTA POLISH OPTIMIZATION
+           ========================================= */
+        @media (max-width: 768px) {
+
+            /* General Section Spacing */
+            section,
+            .py-5 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+
+            /* Top Bar Text */
+            .top-bar-text {
+                font-size: 0.75rem !important;
+                padding: 6px 10px !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Typography Adjustments */
+            h1,
+            .display-4 {
+                font-size: 1.85rem !important;
+                line-height: 1.3 !important;
+            }
+
+            h2,
+            .h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .lead {
+                font-size: 0.95rem !important;
+            }
+
+            /* Package & Toggle Cards */
+            .btn-group-toggle .btn {
+                padding: 8px 16px !important;
+                font-size: 0.85rem !important;
+            }
+
+            .box-option-btn {
+                min-width: 55px !important;
+                padding: 6px 10px !important;
+                font-size: 0.85rem !important;
+            }
+
+            /* Floating WhatsApp Button Optimization */
+            .floating-wa {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 32px;
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+                animation: waPulse 2s infinite ease-in-out;
+            }
+        }
+
+        /* Continuous Pulse Animation for Floating WA */
+        @keyframes waPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 6px 22px rgba(37, 211, 102, 0.8);
+            }
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- =========================================
+         LOADING SCREEN ANIMATION
+         ========================================= -->
+    <div id="loading-screen">
+        <div class="logo-fill-container">
+            <img src="https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/logo/logo.svg"
+                alt="SAJ Logo Loading" class="logo-fill-img">
+        </div>
+        <div class="logo-fill-bar-wrapper">
+            <div class="logo-fill-bar"></div>
+        </div>
+    </div>
 
     <!-- =========================================
          TEMPAT KOMPONEN DI-RENDER
@@ -354,24 +768,31 @@ Seluruh data website berada di bawah ini.
 Edit bagian ini untuk mengubah isi Landing Page.
 ****************************************************************/
         const config = {
+            // Loading Screen Animation
+            loadingScreen: {
+                enabled: true,
+                logo: "https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/logo/logo.svg",
+                minDuration: 600
+            },
+
             // Top Bar Promo
             topBar: {
                 enabled: true,
                 text: "CLAIM PROMO POTONGAN BULAN INI SEKARANG! PROMO TERBATAS!",
                 link: "#hero"
             },
-            
+
             // Pengaturan Umum
             brandName: "Aqiqah Saung Abah Jajat",
             logo: "https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/logo/logo.svg",
             whatsapp: "6281286159015", // Ganti dengan nomor WA aslinya
-            
+
             // Hero Section (Bagian Atas)
             hero: {
                 title: "Aqiqah Mudah, Amanah, & Sesuai Syariat",
                 subtitle: "Layanan aqiqah profesional dengan cita rasa masakan terbaik dikelasnya. Cukup pesan dari rumah, dan paket aqiqah siap dikirim ke lokasi Anda.",
                 // Gambar dari GitHub
-                image: "https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/hero/hero.webp", 
+                image: "https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/hero/hero.webp",
                 ctaText: "Pesan Sekarang",
                 ctaLink: "#paket",
                 stats: {
@@ -380,7 +801,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                     rating: "4.9 ⭐ Ulasan Google"
                 }
             },
-            
+
             // Keunggulan (Features)
             features: {
                 title: "Mengapa Memilih Kami?",
@@ -427,7 +848,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                     ]
                 }
             },
-            
+
             // Pilihan Paket Harga
             packages: {
                 title: "Pilihan Paket Aqiqah",
@@ -456,7 +877,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Olahan Daging (Sate/Teriyaki/Rendang)",
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -474,7 +895,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Olahan Daging (Sate/Teriyaki/Rendang)",
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -502,7 +923,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
                                     "Kentang Balado",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -522,7 +943,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
                                     "Kentang Balado",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -548,10 +969,10 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Nasi Putih",
                                     "Olahan Daging (Sate/Teriyaki/Rendang)",
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
-                                    "Olahan Ayam (Ayam Goreng/Bakar)",
+                                    "Olahan Ayam (Ayam Goreng/Kecap)",
                                     "Kentang Balado",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -569,10 +990,10 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Nasi Putih",
                                     "Olahan Daging (Sate/Teriyaki/Rendang)",
                                     "Olahan Tulang (Gulai/Sop/Tongseng)",
-                                    "Olahan Ayam (Ayam Goreng/Bakar)",
+                                    "Olahan Ayam (Ayam Goreng/Kecap)",
                                     "Kentang Balado",
                                     "Kerupuk Udang",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -599,7 +1020,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Daging Goreng Rempah",
                                     "Kentang Balado",
                                     "Emping",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -618,7 +1039,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Daging Goreng Rempah",
                                     "Kentang Balado",
                                     "Emping",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -645,7 +1066,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Daging Goreng Rempah",
                                     "Kentang Balado",
                                     "Emping",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -664,7 +1085,7 @@ Edit bagian ini untuk mengubah isi Landing Page.
                                     "Daging Goreng Rempah",
                                     "Kentang Balado",
                                     "Emping",
-                                    "Minuman ringan",
+                                    "Minuman Kemasan",
                                     "Mix Vegetables",
                                     "Alat Makan Higienis"
                                 ]
@@ -742,48 +1163,178 @@ Edit bagian ini untuk mengubah isi Landing Page.
                     ]
                 }
             },
-            
+
             // Testimoni (Slider)
+            // Dataset: list_testimoni_asset_v1.csv
             testimonials: {
                 title: "Apa Kata Mereka?",
                 items: [
                     {
-                        name: "Keluarga Bpk. Budi",
+                        name: "Ahmad Romdoni",
+                        location: "Tangerang",
                         rating: 5,
-                        text: "Alhamdulillah masakan sangat enak, dagingnya empuk dan tidak bau prengus. Pengiriman juga tepat waktu sebelum acara dimulai. Terima kasih SAJ Aqiqah!"
+                        text: "Saung abah jajat. recommended bgtt sih menurut sya. kk admin nya ramah. sll respon. sll gercep ksh info nya. masakan nya toppp. pengiriman ny kilat. driver nya jg baik sopan.. best pokoknya saung abah jajat",
+                        highlightText: "Recommended bgtt! Admin ramah, selalu respon cepat, masakan toppp, pengiriman kilat. Best pokoknya Saung Abah Jajat!",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_1.webp"
                     },
                     {
-                        name: "Ibu Siti Aisyah",
+                        name: "Desi Ikrama",
+                        location: "Jakarta",
                         rating: 5,
-                        text: "Sangat terbantu dengan paket praktis dari SAJ. Semuanya sudah diurus rapi, porsi pas, kotaknya eksklusif, dan rasanya mantap."
+                        text: "Alhamdulillah semua suka dengan masakan nya enak, pengantaran tepat waktu pelayanan bagus, terimakasih aqiqah abahajat atas pelayanan dan hadiah nya 🙏🏻",
+                        highlightText: "Alhamdulillah semua suka dengan masakan nya enak, pengantaran tepat waktu, pelayanan bagus. Terimakasih atas hadiah nya! 🙏🏻",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_2.webp"
                     },
                     {
-                        name: "Keluarga Pratama",
+                        name: "Adham Naun",
+                        location: "Bekasi",
                         rating: 5,
-                        text: "Pelayanan sangat ramah, CS responsif, dan profesional. Sertifikatnya bagus banget bisa untuk kenang-kenangan anak kami."
+                        text: "Alhamdulilah Aqiqah Saung Abah Jajat cukup puas krn rasa masakannya nikmat & menunyapun ada beberapa varian jd bisa pilih sesuai keinginan pelanggan, disana jg ada testfoodnya biar ga penasaran sama olahan masakannya, bagi yg hunting2 catring buat Aqiqah recomended banget disini 🙏🏻",
+                        highlightText: "Puas! Rasa masakan nikmat, banyak varian menu, dan ada test food gratis. Recomended banget buat yang hunting catering aqiqah! 🙏🏻",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_3.webp"
+                    },
+                    {
+                        name: "Aini Fauziah",
+                        location: "Bogor",
+                        rating: 5,
+                        text: "Selalu percaya Aqiqah di SAJ. Selain masakannya enak, banyak promo dan bonus yg di dapat. Sukses selalu untuk Saung Abah Jajat 🤲🏻",
+                        highlightText: "Selain masakannya enak, banyak promo dan bonus yg di dapat. Sukses selalu! 🤲🏻",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_4.webp"
+                    },
+                    {
+                        name: "Purwanto",
+                        location: "Tangerang",
+                        rating: 5,
+                        text: "Terimakasih Sudah Membantu Berjalan Lancarnya Aqiqah Anak Saya. Alhamdulillah Enak Banget Masakannya, dagingnya Empuk, rempahnya berasa dan bonusnya banyak. Terimakasih @Aqiqah Saung Abah Jajat. Sukses Selalu dan Makin Maju Lagi.",
+                        highlightText: "Alhamdulillah Enak Banget Masakannya, dagingnya Empuk, rempahnya berasa dan bonusnya banyak! Sukses Selalu dan Makin Maju!",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_5.webp"
+                    },
+                    {
+                        name: "Prepty Vanesa",
+                        location: "Tangerang",
+                        rating: 5,
+                        text: "Rekomen bngt deh pokoknya masaknya enak admin ramah. Baik. Pokonya best jangan ragu dengan aqiqah saung abang jajat",
+                        highlightText: "Rekomen banget! Masak enak, admin ramah dan baik. Jangan ragu pilih Aqiqah Saung Abah Jajat!",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_6.webp"
+                    },
+                    {
+                        name: "Roni",
+                        location: "Depok",
+                        rating: 5,
+                        text: "Alhamdulillah aqiqah saung abah jajat sangat amanah pelayanan memuaskan masakan enak pengiriman on time harga terjangkau di kasih diskon karena sudah pernah pesan di sini di kasih hadiah jga poko nya the best. kemasannya menarik.",
+                        highlightText: "Sangat amanah, pelayanan memuaskan, masakan enak, pengiriman on time, harga terjangkau, dapat diskon & hadiah. The best!",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_7.webp"
+                    },
+                    {
+                        name: "Trisularsih",
+                        location: "Tangerang",
+                        rating: 5,
+                        text: "Selalu jadi andalan buat aqiqah, terpercaya, amanah, dan prosesnya ga ribet menunya juga mantap dan enak👍🏻. Terimakasih SAUNG ABAH AJAT. Sangat puas sekali aqiqah disini🙏🏻",
+                        highlightText: "Selalu jadi andalan, terpercaya, amanah, prosesnya ga ribet, menunya mantap dan enak! Sangat puas aqiqah disini 👍🏻",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_8.webp"
+                    },
+                    {
+                        name: "Alfiya Fitri",
+                        location: "Tangerang",
+                        rating: 5,
+                        text: "Alhamdulillah aqiqah berjalan lancar berkat pesen di saung abah jajat. MasyaAllah admin nya ramahhh pol, packing menu makanan nya kekinian, hargaaa nya affordable bgt dan pastiii rasaaa nyaa JUARAKK, ENAKK BGT 🥰. Ga bau kambing samsek. Pokoknya kalo mau aqiqah ya SAUNG ABAH JAJAT!",
+                        highlightText: "Admin ramahhh, packing kekinian, harga affordable, dan rasanya JUARAKK ENAKK BGT! Ga bau kambing samsek. Pokoknya SAUNG ABAH JAJAT! 🥰",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_9.webp"
+                    },
+                    {
+                        name: "Mety Dwi Arfili",
+                        location: "Bekasi",
+                        rating: 5,
+                        text: "Masakannya enak, sesuai dengan ekspektasi, tempatnya juga rapi, sudah disediakan kantong plastik pembungkus juga, banyak gift yang didapat seperti mug, boneka serta sudah dapat sertifikat Aqiqah. serta mendapatkan foto dan video tentang penyembelihan hewan aqiqahnya.",
+                        highlightText: "Masakan enak sesuai ekspektasi, banyak gift (mug, boneka, sertifikat), plus dapat foto & video dokumentasi penyembelihan!",
+                        image: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/cust_10.webp"
                     }
                 ]
             },
-            
+
             // FAQ (Tanya Jawab)
             faq: {
                 title: "Pertanyaan yang Sering Diajukan",
                 items: [
                     {
                         q: "Apakah penyembelihan bisa disaksikan langsung?",
-                        a: "Tentu bisa! Anda bisa datang langsung ke kandang/tempat pemotongan kami. Jika berhalangan hadir, kami akan mengirimkan video dokumentasi penyembelihan yang mencantumkan nama anak Anda."
+                        a: "Tentu saja. Ayah & Bunda dipersilakan hadir langsung untuk menyaksikan proses penyembelihan hewan aqiqah. Seluruh proses dilakukan sesuai syariat oleh tim yang berpengalaman."
                     },
                     {
-                        q: "Kapan batas waktu pemesanan (H-berapa)?",
-                        a: "Idealnya maksimal pemesanan adalah H-3 sebelum acara, agar kami bisa menyeleksi hewan terbaik dan mempersiapkan masakan dengan maksimal."
+                        q: "Jika saya tidak bisa hadir, apakah akan mendapatkan dokumentasi penyembelihan?",
+                        a: "Tentu. Jika Ayah & Bunda berhalangan hadir, kami akan mengirimkan dokumentasi penyembelihan sebagai bentuk transparansi dan amanah dari proses aqiqah yang telah dilaksanakan."
+                    },
+                    {
+                        q: "Apakah saya boleh request menu?",
+                        a: "Boleh. Selama menu yang dipilih masih termasuk dalam daftar varian menu yang tersedia pada paket yang dipilih, tim kami akan dengan senang hati membantu menyesuaikannya."
+                    },
+                    {
+                        q: "Apakah menu bisa di-custom sesuai keinginan?",
+                        a: "Untuk saat ini, menu belum dapat dibuat di luar pilihan yang tersedia. Namun apabila Ayah & Bunda memiliki kebutuhan khusus, silakan diskusikan terlebih dahulu dengan tim Customer Service kami. Kami akan membantu memberikan solusi terbaik sesuai ketersediaan menu."
+                    },
+                    {
+                        q: "Area pengiriman mencakup wilayah mana saja?",
+                        a: "Saat ini kami melayani pengiriman ke seluruh wilayah Jabodetabek. Untuk area di luar jangkauan tersebut, silakan hubungi tim Customer Service kami untuk informasi lebih lanjut."
+                    },
+                    {
+                        q: "Apakah ada gratis ongkir?",
+                        a: "Ya. Gratis ongkir masih menjadi salah satu bonus promo yang kami berikan. Namun, promo ini berlaku sesuai syarat dan ketentuan yang berlaku. Silakan hubungi Customer Service kami untuk mengetahui detail wilayah yang mendapatkan fasilitas tersebut."
+                    },
+                    {
+                        q: "Apakah pesanan bisa dikirim ke lebih dari satu alamat?",
+                        a: "Tentu bisa. Kami dapat membantu mengirimkan pesanan ke beberapa alamat sekaligus. Untuk pengiriman ke lebih dari satu lokasi biasanya akan dikenakan biaya pengiriman tambahan sesuai jarak dan jumlah alamat tujuan."
+                    },
+                    {
+                        q: "Bagaimana perhitungan biaya tambahan untuk pengiriman ke lebih dari satu alamat?",
+                        a: "Biaya tambahan akan disesuaikan dengan jumlah alamat tujuan serta lokasi pengiriman. Tim Customer Service kami akan membantu menghitungkan estimasi biaya sebelum pemesanan diproses."
+                    },
+                    {
+                        q: "Apakah paket bisa dikirim pada pagi hari?",
+                        a: "Bisa. Selama jadwal pengiriman masih tersedia, kami dapat mengirimkan paket sejak pukul 08.00 WIB. Apabila Ayah & Bunda membutuhkan pengiriman di luar jam tersebut, silakan konsultasikan terlebih dahulu dengan tim Customer Service kami."
+                    },
+                    {
+                        q: "Kapan batas waktu pemesanan?",
+                        a: "Agar kami dapat mempersiapkan hewan terbaik dan proses pengolahan secara maksimal, kami menyarankan pemesanan dilakukan paling lambat H-3 sebelum acara."
                     },
                     {
                         q: "Bagaimana sistem pembayarannya?",
-                        a: "Kami melayani sistem DP (Down Payment) minimal 50% saat pemesanan, dan sisa pelunasan dapat dilakukan saat pesanan sudah tiba dengan aman di lokasi acara (COD)."
+                        a: "Pemesanan dapat dilakukan dengan pembayaran Down Payment (DP) minimal 50% atau Full pelunasan. Jika Ayah & Bunda melakukan Down Payment (DP), maka sisa pelunasan dilakukan saat pesanan telah tiba dengan aman di lokasi pengiriman."
+                    },
+                    {
+                        q: "Apa saja metode pembayaran yang tersedia?",
+                        a: "Untuk saat ini kami hanya menyediakan pembayaran via transfer ke rekening resmi kami, atau dapat juga dengan pembayaran tunai."
+                    },
+                    {
+                        q: "Apakah bisa melakukan pembayaran DP?",
+                        a: "Tentu bisa. Kami menerima pembayaran DP minimal 50% sebagai tanda jadi pemesanan, sehingga jadwal dan hewan aqiqah dapat kami siapkan lebih awal."
+                    },
+                    {
+                        q: "Apakah pelunasan bisa dilakukan setelah acara selesai?",
+                        a: "Untuk saat ini belum bisa. Pelunasan dilakukan ketika seluruh pesanan telah tiba dengan aman di lokasi tujuan sebelum acara dimulai."
+                    },
+                    {
+                        q: "Apakah saya bisa memesan untuk tanggal yang masih jauh?",
+                        a: "Tentu saja. Bahkan kami sangat menyarankan melakukan pemesanan lebih awal agar jadwal penyembelihan dan pengiriman dapat dipersiapkan dengan lebih baik."
+                    },
+                    {
+                        q: "Apakah jumlah box bisa disesuaikan?",
+                        a: "Bisa. Jumlah box dapat disesuaikan dengan kebutuhan acara. Tim Customer Service kami akan membantu memberikan rekomendasi paket yang paling sesuai."
+                    },
+                    {
+                        q: "Apakah isi paket bisa digabung atau di-combine?",
+                        a: "Pada dasarnya setiap paket telah dihitung berdasarkan jumlah hewan dan estimasi hasil olahan agar pembagian tetap layak dan sesuai standar kami. Namun apabila Ayah & Bunda memiliki kebutuhan tertentu, silakan diskusikan dengan Customer Service kami. Kami akan membantu memberikan solusi terbaik sesuai pilihan menu yang tersedia."
+                    },
+                    {
+                        q: "Bagaimana pembagian daging aqiqah?",
+                        a: "Sesuai anjuran syariat, pembagian aqiqah umumnya dilakukan dalam kondisi sudah diolah menjadi masakan siap santap. Namun apabila Ayah & Bunda memilih Paket Karkas, kami akan menyerahkan daging beserta tulang yang telah dicacah dan siap untuk diolah sendiri."
+                    },
+                    {
+                        q: "Apakah SAJ bisa membantu penyaluran aqiqah?",
+                        a: "Tentu bisa. Apabila Ayah & Bunda ingin menyalurkan sebagian atau seluruh paket aqiqah kepada yang membutuhkan, tim kami siap membantu proses penyalurannya."
                     }
                 ]
             },
-            
+
             // Bagian Bawah (Footer)
             footer: {
                 quicklinks: [
@@ -1063,28 +1614,28 @@ SAFE TO EDIT: YES
                     <!-- Package Cards Grid -->
                     <div class="row g-4 justify-content-center">
                         ${pkgs.items.map((pkg, index) => {
-                            const variant = pkg.variants[currentGender];
-                            if (!variant) return '';
+                const variant = pkg.variants[currentGender];
+                if (!variant) return '';
 
-                            // Default select first box option if not set
-                            if (!window.selectedBoxes[pkg.id]) {
-                                window.selectedBoxes[pkg.id] = variant.options[0].box;
-                            }
-                            const currentBox = window.selectedBoxes[pkg.id];
-                            
-                            // Find active option
-                            let selectedOpt = variant.options.find(o => o.box === currentBox);
-                            if (!selectedOpt) {
-                                selectedOpt = variant.options[0];
-                                window.selectedBoxes[pkg.id] = selectedOpt.box;
-                            }
+                // Default select first box option if not set
+                if (!window.selectedBoxes[pkg.id]) {
+                    window.selectedBoxes[pkg.id] = variant.options[0].box;
+                }
+                const currentBox = window.selectedBoxes[pkg.id];
 
-                            const formattedPrice = formatRupiah(selectedOpt.price);
-                            const isContactPrice = selectedOpt.price === "Hubungi Kami";
-                            const waText = `Halo SAJ, saya berminat order ${pkg.name} (${currentGender} - ${variant.goats} Domba${currentBox !== '-' ? ', ' + currentBox + ' Box' : ''}). Mohon info selengkapnya.`;
-                            const waUrl = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(waText)}`;
+                // Find active option
+                let selectedOpt = variant.options.find(o => o.box === currentBox);
+                if (!selectedOpt) {
+                    selectedOpt = variant.options[0];
+                    window.selectedBoxes[pkg.id] = selectedOpt.box;
+                }
 
-                            return `
+                const formattedPrice = formatRupiah(selectedOpt.price);
+                const isContactPrice = selectedOpt.price === "Hubungi Kami";
+                const waText = `Halo SAJ, saya berminat order ${pkg.name} (${currentGender} - ${variant.goats} Domba${currentBox !== '-' ? ', ' + currentBox + ' Box' : ''}). Mohon info selengkapnya.`;
+                const waUrl = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(waText)}`;
+
+                return `
                             <div class="col-lg-4 col-md-6" ${getAos((index % 3) * 100)}>
                                 <div class="saj-card text-center position-relative d-flex flex-column">
                                     ${pkg.tag ? `<div class="card-promo-tag">${pkg.tag}</div>` : ''}
@@ -1149,7 +1700,7 @@ SAFE TO EDIT: YES
                                 </div>
                             </div>
                             `;
-                        }).join('')}
+            }).join('')}
                     </div>
 
                     <!-- Inclusions Section Bar -->
@@ -1220,46 +1771,206 @@ SAFE TO EDIT: YES
 
         /****************************************************************
 COMPONENT: renderTestimonials
-DESCRIPTION: Slider testimoni pelanggan menggunakan Swiper.js.
+DESCRIPTION: Slider testimoni dengan Focus Mode — klik card untuk menampilkan Hero Card.
 DEPENDS_ON: config.testimonials, Swiper.js, createStars()
 SAFE TO EDIT: YES
 ****************************************************************/
-        const renderTestimonials = () => `
+
+        // --- State Testimonials Focus Mode ---
+        window._testi = {
+            activeIndex: 0,
+            isExpanded: false,
+        };
+
+        /**
+         * Dipanggil saat user klik card di slider.
+         * Menampilkan hero card dengan highlight text.
+         */
+        window.selectTestimonial = (index) => {
+            const t = window._testi;
+            const sameCard = t.activeIndex === index;
+
+            t.activeIndex = index;
+            t.isExpanded = false;
+
+            // Sync highlight active card
+            document.querySelectorAll('.testi-card').forEach((el, i) => {
+                el.classList.toggle('is-active', i === index);
+            });
+
+            const wrapper = document.getElementById('testi-hero-wrapper');
+            if (!wrapper) return;
+
+            if (sameCard && wrapper.classList.contains('is-visible')) {
+                // Toggle off jika klik card yang sama
+                wrapper.classList.remove('is-visible');
+                return;
+            }
+
+            // Render ulang isi hero
+            _renderHeroContent(false);
+
+            if (!wrapper.classList.contains('is-visible')) {
+                wrapper.classList.add('is-visible');
+            }
+        };
+
+        /**
+         * Expand hero card ke pesan utuh, atau tutup kembali ke highlight.
+         */
+        window.toggleTestiReview = (expand) => {
+            window._testi.isExpanded = expand;
+            _renderHeroContent(true);
+        };
+
+        /**
+         * Internal: render isi hero card dengan animasi fade.
+         */
+        function _renderHeroContent(withFade) {
+            const body = document.getElementById('testi-hero-body');
+            if (!body) return;
+
+            const { activeIndex, isExpanded } = window._testi;
+            const items = config.testimonials.items;
+            const cur = items[activeIndex] || items[0];
+
+            const doRender = () => {
+                const starsHtml = createStars(cur.rating || 5);
+                const avatarLetter = cur.name ? cur.name.charAt(0).toUpperCase() : '?';
+                const locationHtml = cur.location
+                    ? `<p class="testi-hero-location"><i class="fa-solid fa-location-dot me-1"></i>${cur.location}</p>`
+                    : '';
+
+                if (isExpanded) {
+                    // === Mode Pesan Utuh ===
+                    body.innerHTML = `
+                        <div class="testi-hero-stars">${starsHtml}</div>
+                        <p class="testi-hero-text is-full">"${cur.text}"</p>
+                        <div class="testi-hero-name">${cur.name}</div>
+                        ${locationHtml}
+                        <div class="mb-4">
+                            <span class="badge-google-review">
+                                <i class="fa-brands fa-google"></i> Ulasan Google
+                            </span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn-close-review" onclick="toggleTestiReview(false)">
+                                <i class="fa-solid fa-chevron-up"></i> Tutup
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    // === Mode Highlight ===
+                    const highlight = cur.highlightText || cur.text;
+                    body.innerHTML = `
+                        <div class="testi-hero-stars">${starsHtml}</div>
+                        <p class="testi-hero-text">"${highlight}"</p>
+                        <div class="mb-3">
+                            <button type="button" class="btn-read-review" onclick="toggleTestiReview(true)">
+                                Baca Review Lengkap <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="testi-hero-name">${cur.name}</div>
+                        ${locationHtml}
+                        <div>
+                            <span class="badge-google-review">
+                                <i class="fa-brands fa-google"></i> Ulasan Google
+                            </span>
+                        </div>
+                    `;
+                }
+
+                body.classList.remove('is-fading');
+            };
+
+            if (withFade) {
+                body.classList.add('is-fading');
+                setTimeout(doRender, 200);
+            } else {
+                doRender();
+            }
+        }
+
+        const renderTestimonials = () => {
+            const items = config.testimonials.items || [];
+
+            const previewCards = items.map((testi, idx) => `
+                <div class="swiper-slide">
+                    <div class="testi-card${idx === 0 ? ' is-active' : ''} d-flex flex-column h-100" onclick="selectTestimonial(${idx})">
+                        <div class="testi-card-stars">${createStars(testi.rating || 5)}</div>
+                        <p class="testi-card-text">
+                            "${testi.highlightText
+                    ? (testi.highlightText.length > 80 ? testi.highlightText.substring(0, 80) + '…' : testi.highlightText)
+                    : (testi.text.length > 80 ? testi.text.substring(0, 80) + '…' : testi.text)}"
+                        </p>
+                        <div class="testi-card-footer">
+                            <div class="testi-card-avatar">${testi.name.charAt(0)}</div>
+                            <div style="overflow:hidden;">
+                                <p class="testi-card-name text-truncate">${testi.name}</p>
+                                ${testi.location ? `<span class="testi-card-location">${testi.location}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Hero card default = item pertama, belum visible
+            const first = items[0] || {};
+            const firstHighlight = first.highlightText || first.text || '';
+            const firstLocation = first.location
+                ? `<p class="testi-hero-location"><i class="fa-solid fa-location-dot me-1"></i>${first.location}</p>`
+                : '';
+
+            return `
             <section id="testimoni" class="py-5 bg-primary-saj text-white" style="position:relative; overflow:hidden;">
-                <!-- Decorative element -->
-                <div style="position:absolute; top:-50px; left:-50px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.05);"></div>
-                
+                <div style="position:absolute; top:-60px; left:-60px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.04); pointer-events:none;"></div>
+                <div style="position:absolute; bottom:-40px; right:-40px; width:160px; height:160px; border-radius:50%; background:rgba(241,176,0,0.06); pointer-events:none;"></div>
+
                 <div class="container py-5 position-relative" style="z-index: 1;">
+
+                    <!-- Section Header -->
                     <div class="text-center mb-5" data-aos="fade-up">
                         <h2 class="fw-bold text-white display-6">${config.testimonials.title}</h2>
                         <div class="bg-secondary-saj mx-auto mt-3" style="width: 80px; height: 6px; border-radius: 3px;"></div>
+                        <p class="text-white-50 mt-3 mb-0" style="font-size:0.9rem;">Klik kartu testimoni untuk melihat detail review</p>
                     </div>
-                    
-                    <div class="swiper mySwiper pb-5" data-aos="fade-up" data-aos-delay="200">
-                        <div class="swiper-wrapper">
-                            ${config.testimonials.items.map(testi => `
-                                <div class="swiper-slide">
-                                    <div class="bg-white text-dark p-4 p-xl-5 rounded-4 shadow mx-2 h-100 d-flex flex-column">
-                                        <div class="text-secondary-saj mb-3 fs-5">
-                                            ${createStars(testi.rating)}
-                                        </div>
-                                        <p class="fst-italic mb-4 flex-grow-1 text-muted">"${testi.text}"</p>
-                                        <div class="d-flex align-items-center mt-auto">
-                                            <div class="bg-primary-saj text-white rounded-circle d-flex justify-content-center align-items-center fw-bold fs-4 me-3" style="width: 50px; height: 50px;">
-                                                ${testi.name.charAt(0)}
-                                            </div>
-                                            <h6 class="fw-bold mb-0 text-primary-saj">${testi.name}</h6>
-                                        </div>
-                                    </div>
+
+                    <!-- Hero Card (Focus Mode) — hidden by default, visible on card click -->
+                    <div class="testi-hero-wrapper" id="testi-hero-wrapper" data-aos="fade-up" data-aos-delay="50">
+                        <div class="testi-hero-card" id="testi-hero-card">
+                            <div class="testi-hero-body" id="testi-hero-body" style="text-align:center;">
+                                <!-- Diisi oleh JS saat card diklik -->
+                                <div class="testi-hero-stars">${createStars(first.rating || 5)}</div>
+                                <p class="testi-hero-text">"${firstHighlight}"</p>
+                                <div class="mb-3">
+                                    <button type="button" class="btn-read-review" onclick="toggleTestiReview(true)">
+                                        Baca Review Lengkap <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
                                 </div>
-                            `).join('')}
+                                <div class="testi-hero-name">${first.name || ''}</div>
+                                ${firstLocation}
+                                <div>
+                                    <span class="badge-google-review">
+                                        <i class="fa-brands fa-google"></i> Ulasan Google
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="swiper-pagination mt-4"></div>
                     </div>
+
+                    <!-- Preview Slider -->
+                    <div class="swiper mySwiper" data-aos="fade-up" data-aos-delay="150">
+                        <div class="swiper-wrapper">
+                            ${previewCards}
+                        </div>
+                        <div class="swiper-pagination mt-4" style="position:static; margin-top: 20px;"></div>
+                    </div>
+
                 </div>
             </section>
-        `;
-        ENGINE.registry.push({ name: 'renderTestimonials', fn: renderTestimonials, description: 'Slider testimoni pelanggan' });
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderTestimonials', fn: renderTestimonials, description: 'Slider testimoni dengan Focus Mode Hero Card' });
 
         /****************************************************************
 COMPONENT: renderFAQ
@@ -1293,6 +2004,70 @@ SAFE TO EDIT: YES
                                     </div>
                                 `).join('')}
                             </div>
+
+                            <!-- CTA Card: Masih ada pertanyaan? -->
+                            <div class="mt-5" data-aos="fade-up">
+                                <div style="
+                                    background: linear-gradient(135deg, #f8fff8 0%, #eafaf1 100%);
+                                    border: 2px solid var(--saj-yellow);
+                                    border-radius: 20px;
+                                    padding: 36px 32px;
+                                    text-align: center;
+                                    box-shadow: 0 8px 30px rgba(0, 51, 51, 0.08);
+                                    position: relative;
+                                    overflow: hidden;
+                                ">
+                                    <!-- Decorative bubble -->
+                                    <div style="position:absolute; top:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(241,176,0,0.08); pointer-events:none;"></div>
+                                    <div style="position:absolute; bottom:-20px; left:-20px; width:70px; height:70px; border-radius:50%; background:rgba(0,51,51,0.05); pointer-events:none;"></div>
+
+                                    <div style="
+                                        width: 56px; height: 56px;
+                                        background: var(--saj-yellow);
+                                        border-radius: 50%;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        margin-bottom: 18px;
+                                        box-shadow: 0 4px 14px rgba(241, 176, 0, 0.35);
+                                    ">
+                                        <i class="fa-brands fa-whatsapp" style="color: var(--saj-green); font-size: 1.5rem;"></i>
+                                    </div>
+
+                                    <h4 style="color: var(--saj-green); font-weight: 800; margin-bottom: 10px;">
+                                        Masih ada pertanyaan lain?
+                                    </h4>
+                                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; max-width: 480px; margin: 0 auto 24px auto;">
+                                        Tenang, tim Customer Service kami siap membantu menjawab semua pertanyaan Ayah &amp; Bunda seputar aqiqah, pemilihan paket, hingga proses pemesanan.
+                                    </p>
+                                    <a
+                                        href="https://wa.me/${config.whatsapp}?text=Halo%20Kak%20SAJ%2C%20saya%20ingin%20konsultasi%20seputar%20aqiqah%20%F0%9F%99%8F"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style="
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 10px;
+                                            background: var(--saj-green);
+                                            color: #ffffff;
+                                            font-family: 'Quicksand', sans-serif;
+                                            font-weight: 800;
+                                            font-size: 0.95rem;
+                                            padding: 13px 30px;
+                                            border-radius: 50px;
+                                            text-decoration: none;
+                                            box-shadow: 0 6px 20px rgba(0, 51, 51, 0.25);
+                                            transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+                                        "
+                                        onmouseover="this.style.background='#f1b000'; this.style.color='#003333'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 28px rgba(241,176,0,0.4)';"
+                                        onmouseout="this.style.background='var(--saj-green)'; this.style.color='#ffffff'; this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0,51,51,0.25)';"
+                                    >
+                                        <i class="fa-brands fa-whatsapp" style="font-size: 1.15rem;"></i>
+                                        Konsultasi Gratis via WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1353,10 +2128,10 @@ SAFE TO EDIT: YES
                                 ${config.footer.sosmed.map(social => `
                                     <li class="mb-3">
                                         <a href="${social.url}" target="_blank" class="text-white-50 text-decoration-none d-flex align-items-center footer-link">
-                                            ${social.customIcon ? 
-                                                `<img src="${social.customIcon}" alt="${social.label}" class="me-3" style="width: 20px; height: 20px; object-fit: contain;">` :
-                                                `<i class="${social.icon} fs-5 me-3 text-secondary-saj" style="width: 20px;"></i>`
-                                            } ${social.label}
+                                            ${social.customIcon ?
+                `<img src="${social.customIcon}" alt="${social.label}" class="me-3" style="width: 20px; height: 20px; object-fit: contain;">` :
+                `<i class="${social.icon} fs-5 me-3 text-secondary-saj" style="width: 20px;"></i>`
+            } ${social.label}
                                         </a>
                                     </li>
                                 `).join('')}
@@ -1447,16 +2222,21 @@ SAFE TO EDIT: NO
                 console.error('[LP Engine] AOS gagal diinisialisasi:', e);
             }
 
-            // Swiper (Carousel Testimoni)
+            // Swiper (Carousel Testimoni — Preview Slider)
             try {
                 new Swiper('.mySwiper', {
                     slidesPerView: 1,
-                    spaceBetween: 30,
+                    spaceBetween: 20,
                     grabCursor: true,
-                    pagination: { el: '.swiper-pagination', clickable: true },
+                    centeredSlides: false,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
                     breakpoints: {
-                        768:  { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
+                        576: { slidesPerView: 2, spaceBetween: 16 },
+                        992: { slidesPerView: 3, spaceBetween: 20 },
+                        1200: { slidesPerView: 4, spaceBetween: 20 },
                     }
                 });
             } catch (e) {
@@ -1492,9 +2272,28 @@ SAFE TO EDIT: NO
 
         // Entry point aplikasi
         document.addEventListener('DOMContentLoaded', () => {
+            const startTime = Date.now();
             runRenderEngine();
             initLibraries();
+
+            // Selesai Loading Screen Animation
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen && config.loadingScreen && config.loadingScreen.enabled) {
+                const minDuration = config.loadingScreen.minDuration || 600;
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = Math.max(0, minDuration - elapsedTime);
+
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        loadingScreen.remove();
+                    }, 600);
+                }, remainingTime);
+            } else if (loadingScreen) {
+                loadingScreen.remove();
+            }
         });
     </script>
 </body>
+
 </html>

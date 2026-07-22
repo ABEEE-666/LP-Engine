@@ -116,16 +116,18 @@ Peningkatan arsitektur internal LP Engine tanpa mengubah tampilan website.
   - createStars(rating) — generate HTML bintang dari angka.
   - createWaLink(number, message) — generate URL WhatsApp.
   - createSectionHeader(title, subtitle, theme) — generate header section standar.
+  - formatRupiah(val) — format angka ke format Rupiah (Rp X.XXX.XXX).
 - Component Metadata pada setiap Component (COMPONENT, DESCRIPTION, DEPENDS_ON, SAFE TO EDIT).
 - Component Registry — ENGINE.registry.
 - Render Queue — ENGINE.renderQueue.
 - Render Engine section (700 RENDER ENGINE) — runRenderEngine().
 - initLibraries() helper function untuk init library eksternal.
 - Error handling pada render engine dan inisialisasi library.
+- Library CDN baru: CountUp.js (animasi angka statistik Hero) dan Typed.js (animasi teks rating).
 
 ### Changed
 
-- Struktur section index.html: 300 CONFIG → 400 ENGINE → 500 HELPERS → 600 COMPONENTS → 700 RENDER ENGINE → 800 APP INIT.
+- Struktur section index.html: 100 HTML → 200 CSS → 300 CONFIG → 400 ENGINE → 500 HELPERS → 600 COMPONENTS → 700 RENDER ENGINE → 800 APP INIT.
 - App Initialization lebih bersih: hanya memanggil runRenderEngine() dan initLibraries().
 - renderTestimonials menggunakan createStars() dari Helper Functions.
 - AI Header diperbarui ke Version 1.2.0.
@@ -170,15 +172,123 @@ Tanggal
 
 ---
 
+# Version 2.4.0
+
+Status
+
+Production
+
+Tanggal
+
+22 Juli 2026
+
+---
+
+## Phase 4 — Item 3: Logo Fill Loading Screen Animation
+
+- Menambahkan **Logo Fill Loading Screen Animation** saat halaman pertama kali dimuat.
+- Menambahkan konfigurasi `config.loadingScreen` untuk mengontrol status & durasi tayang loading screen.
+- Menggunakan background warna hijau SAJ (`#003333`) dengan efek animasi pulsa emas (`pulseGlow`) pada logo SVG dan progress fill bar (`logoFill`).
+- Menambahkan transisi `fade-out` yang halus sebelum elemen dihapus dari DOM setelah inisialisasi aplikasi selesai.
+
+---
+
+# Version 2.5.0
+
+Status
+
+Production
+
+Tanggal
+
+22 Juli 2026
+
+---
+
+## Phase 4 — Item 4: Mobile Spacing & CTA Polish Optimization
+
+- Menambahkan `@media (max-width: 768px)` pada CSS `index.html` untuk mengoptimalkan tampilan seluler.
+- Mengurangi *vertical section padding* pada mobile dari `5rem` menjadi `2.5rem` agar konten tidak terlalu renggang dan mudah di-scroll.
+- Menyesuaikan ukuran *typography* (`h1`, `h2`, `.lead`, `.top-bar-text`) agar responsif & tidak terpotong di layar HP.
+- Mengoptimalkan ukuran tombol gender toggle & pemilih box agar pas dan mudah ditekan oleh ibu jari (*thumb-friendly*).
+- Menambahkan animasi *pulse* bergelombang (`waPulse`) pada tombol Floating WhatsApp CTA untuk meningkatkan visibilitas & rasio konversi pada mobile.
+
+---
+
+# Version 2.6.0
+
+Status
+
+Production
+
+Tanggal
+
+22 Juli 2026
+
+---
+
+## Phase 4 — Item 5: Testimonials Focus Mode
+
+Pembaruan besar pada Section Testimoni — dari slider statis menjadi sistem interaktif dua-panel dengan Focus Mode Hero Card.
+
+### Added
+
+- **Testimonials Focus Mode** — arsitektur dua-panel baru:
+  - **Preview Slider** (Swiper): menampilkan kartu-kartu testimoni ringkas yang bisa di-scroll.
+  - **Hero Card** (Focus Mode): muncul saat pengguna mengklik salah satu kartu, menampilkan highlight quote testimoni yang dipilih.
+- State management testimoni (`window._testi`) dengan properti `activeIndex` dan `isExpanded`.
+- Handler interaktif:
+  - `selectTestimonial(index)` — klik kartu untuk membuka/menutup Hero Card.
+  - `toggleTestiReview(expand)` — toggle antara mode highlight dan pesan ulasan utuh.
+  - `_renderHeroContent(withFade)` — internal renderer Hero Card dengan animasi fade.
+- Tombol **"Baca Review Lengkap"** di Hero Card untuk menampilkan teks ulasan asli secara penuh.
+- Tombol **"Tutup"** untuk menutup tampilan pesan utuh dan kembali ke mode highlight.
+- Field `highlightText` pada setiap data testimoni di `config.testimonials.items` — teks singkat ringkasan kuotasi yang ditampilkan di Hero Card dan Preview Slider.
+- CSS baru untuk komponen Focus Mode:
+  - `.testi-card`, `.testi-card-stars`, `.testi-card-text`, `.testi-card-footer`, `.testi-card-avatar`, `.testi-card-name`, `.testi-card-location`.
+  - `.testi-hero-wrapper` dengan animasi `max-height` & `opacity`.
+  - `.testi-hero-card`, `.testi-hero-body`, `.testi-hero-stars`, `.testi-hero-text`, `.testi-hero-name`, `.testi-hero-location`.
+  - `.badge-google-review`, `.btn-read-review`, `.btn-close-review`.
+  - State `.is-active` pada Preview Card dan `.is-visible` pada Hero Wrapper.
+  - `.testi-hero-body.is-fading` untuk animasi konten saat beralih testimoni.
+- Foto testimoni pelanggan (`image` field) tersedia di data config (disiapkan untuk pengembangan berikutnya).
+- Pesan petunjuk di bawah section header: *"Klik kartu testimoni untuk melihat detail review"*.
+- Mobile responsive CSS untuk Hero Card (`padding`, `border-width` pada `max-width: 768px`).
+
+### Changed
+
+- Struktur `renderTestimonials` sepenuhnya direfactor dari slider sederhana menjadi sistem dua-panel interaktif.
+- Data testimoni diperluas: setiap item kini memiliki `name`, `location`, `rating`, `text`, `highlightText`, dan `image`.
+- Tampilan Preview Card menggunakan teks `highlightText` yang dipotong maksimal 80 karakter.
+- Hero Card default menampilkan testimoni pertama (index 0) sebagai konten awal.
+- Swiper breakpoints dioptimalkan untuk menampilkan 1 / 2 / 3 / 4 slide sesuai lebar layar.
+
+### Impact
+
+- Meningkatkan engagement pengguna pada section testimoni.
+- Pengguna dapat membaca ulasan asli tanpa meninggalkan halaman.
+- Tampilan lebih premium dan interaktif.
+
+---
+
+## Phase 4 — Item 6: FAQ CTA Card
+
+- Menambahkan **CTA Card "Masih ada pertanyaan lain?"** di bawah accordion FAQ.
+- CTA mengarahkan pengguna ke WhatsApp dengan pesan pre-filled: *"Halo Kak SAJ, saya ingin konsultasi seputar aqiqah 🙏"*.
+- Desain card menggunakan gradient hijau muda, border kuning SAJ, efek dekoratif bubble, dan ikon WhatsApp.
+- Tombol hover effect mengubah warna dari hijau ke kuning dengan animasi `translateY`.
+
+---
+
 # Next Planned Version
 
 Version
 
-2.3.0
+3.0.0
 
 Target
 
-LP Engine Phase 4 — UI Improvement
+LP Engine Phase 5 — Content Management
 
 Status
 

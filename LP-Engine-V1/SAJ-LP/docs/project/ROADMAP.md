@@ -18,7 +18,7 @@ LP Engine v1.0
 
 Landing Page Version
 
-2.1.0
+2.6.0
 
 Status
 
@@ -26,7 +26,7 @@ Production
 
 Current Phase
 
-Phase 3 ✅ Completed
+Phase 4 ✅ Completed
 
 ---
 
@@ -100,13 +100,14 @@ Menyempurnakan LP Engine agar lebih modular tanpa menghilangkan konsep Single HT
 
 ### Features
 
-- Helper Functions (createStars, createWaLink, createSectionHeader)
+- Helper Functions (createStars, createWaLink, createSectionHeader, formatRupiah)
 - Component Metadata
 - Component Registry
 - ENGINE Object
 - Render Queue
 - Utility Functions
 - Error Handling
+- Library CDN baru: CountUp.js & Typed.js
 
 ---
 
@@ -115,7 +116,7 @@ Menyempurnakan LP Engine agar lebih modular tanpa menghilangkan konsep Single HT
 
 Status
 
-🟡 In Progress
+✅ Completed
 
 Target
 
@@ -125,8 +126,10 @@ Meningkatkan tampilan visual, interaktivitas paket harga, serta kenyamanan pengg
 
 - [x] Item 1: Top Bar Text Promo (Non-floating)
 - [x] Item 2: Update Card Paket Harga, Gender Toggle Switch, Tombol Box Interaktif, & Section Bar Fasilitas Included dari CSV
-- [ ] Item 3: Logo Fill Loading Screen Animation
-- [ ] Item 4: Mobile Spacing & CTA Polish Optimization
+- [x] Item 3: Logo Fill Loading Screen Animation
+- [x] Item 4: Mobile Spacing & CTA Polish Optimization
+- [x] Item 5: Testimonials Focus Mode (Hero Card + Preview Slider dua-panel interaktif)
+- [x] Item 6: FAQ CTA Card (WhatsApp consultation CTA di bawah accordion FAQ)
 
 ---
 
@@ -236,7 +239,7 @@ Seluruh project diharapkan menggunakan arsitektur, dokumentasi, dan workflow yan
 | Phase 1 — Foundation | ✅ Completed |
 | Phase 2 — Documentation | ✅ Completed |
 | Phase 3 — Engine Improvement | ✅ Completed |
-| Phase 4 — Engine Optimization | ⏳ Planned |
+| Phase 4 — UI Improvement & Content Polish | ✅ Completed |
 | Phase 5 — Content Management | ⏳ Planned |
 | Phase 6 — Analytics & Marketing | ⏳ Planned |
 | Phase 7 — SEO Improvement | ⏳ Planned |
