@@ -280,6 +280,43 @@ Pembaruan besar pada Section Testimoni — dari slider statis menjadi sistem int
 
 ---
 
+# Version 2.7.0
+
+Status
+
+Production
+
+Tanggal
+
+24 Juli 2026
+
+---
+
+## LP Engine Phase 5 — Dedicated Promo Landing Page Engine (`promopdjuli26.html`)
+
+Pembuatan Landing Page khusus Sales/Promo Campaign terpisah (`promopdjuli26.html`) berbasis arsitektur LP Engine v1.0 yang berfokus pada konversi penawaran spesial (Payday Sale Juli 2026).
+
+### Added
+
+- **Single Page Promo Architecture (`promopdjuli26.html`)**: Halaman landing page independen untuk campaign promo diskon hingga Rp 600.000.
+- **Campaign Configuration Object (`config.campaign`)**:
+  - Pengaturan kode promo, badge campaign (`⚡ PROMO SPESIAL PAYDAY JULI 2026 ⚡`), title, subtitle, flyer promo image, periode promo, serta custom WhatsApp pre-filled message (`PROMO-SAJ-PAYDAYSALE7`).
+- **Komponen Dedicated Promo (`600 COMPONENTS`)**:
+  - `renderTopBar`: Announcement top bar khusus klaim promo potongan harga.
+  - `renderPromoHero`: Hero section dengan dual CTA, badge diskon, countdown timer/periode promo, dan flyer banner.
+  - `renderPromoBenefits`: Grid 4 benefit utama promo (Bonus Souvenir, Free Dokumentasi, Gratis Ongkir, Olahan Lezat).
+  - `renderPromoPackages`: Grid 4 paket promo spesifik (Hemat & Spesial untuk Perempuan & Laki-laki) dengan informasi *normal price*, *promo price*, *savings*, serta komparasi hemat.
+  - `renderPromoClaimSteps`: 3 langkah mudah klaim promo.
+  - `renderPromoTerms`: Accordion Syarat & Ketentuan klaim promo.
+  - `renderPromoClosingCTA`: Call-to-action penutup berorientasi urgensi stok/kuota promo.
+  - `renderBottomBar`: Sticky bottom CTA bar khusus mobile untuk kemudahan klaim via WhatsApp.
+  - `renderPromoFooter`: Footer ringkas promo beserta Floating WhatsApp CTA.
+- **Interaktivitas & Visual Polish**:
+  - **Parallax Scroll Effect**: Efek parallax gerakan halus flyer promo (`heroParallaxFlyer`) saat scroll di antara Hero & Benefit.
+  - Integration `AOS` animation & Loading Screen Animation dengan branding SAJ.
+
+---
+
 # Next Planned Version
 
 Version
@@ -288,7 +325,7 @@ Version
 
 Target
 
-LP Engine Phase 5 — Content Management
+LP Engine Phase 6 — Content Management & Multi-Brand Expansion (Qurban Berkah)
 
 Status
 

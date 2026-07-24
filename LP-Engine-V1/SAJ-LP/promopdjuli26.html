@@ -1,0 +1,1099 @@
+<!--
+LP ENGINE v1.0
+AI-Friendly Single HTML Architecture
+Project: SAJ Landing Page - Promo Sales Page
+Version: 1.0.0
+This file is organized for AI-assisted maintenance.
+Major sections:
+100 HTML
+200 CSS
+300 CONFIG
+400 ENGINE OBJECT
+500 HELPER FUNCTIONS
+600 COMPONENTS
+700 RENDER ENGINE
+800 APP INITIALIZATION
+-->
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo Spesial Aqiqah - Saung Abah Jajat (SAJ)</title>
+    <meta name="description" content="Klaim promo spesial diskon paket aqiqah siap saji Saung Abah Jajat. Bonus souvenir lengkap & gratis ongkir SEJABODETABEK!">
+
+    <!-- Google Fonts: Quicksand for playful modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- ========================================================= -->
+    <!-- 200 CSS -->
+    <!-- ========================================================= -->
+    <style>
+        :root {
+            /* TEMA WARNA BRAND SAJ */
+            --saj-green: #003333;
+            --saj-green-dark: #002222;
+            --saj-yellow: #f1b000;
+            --saj-yellow-hover: #d99e00;
+            --saj-white: #ffffff;
+            --saj-text: #333333;
+            --saj-text-muted: #6c757d;
+            --saj-bg: #f8f9fa;
+            --saj-light-green: #e6f2f2;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--saj-text);
+            background-color: var(--saj-bg);
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes Custom */
+        .text-primary-saj { color: var(--saj-green) !important; }
+        .text-secondary-saj { color: var(--saj-yellow) !important; }
+        .bg-primary-saj { background-color: var(--saj-green) !important; }
+        .bg-secondary-saj { background-color: var(--saj-yellow) !important; }
+
+        /* Tombol Custom (Rounded & Thumb-friendly) */
+        .btn-primary-saj {
+            background-color: var(--saj-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary-saj:hover {
+            background-color: var(--saj-green-dark);
+            color: var(--saj-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 51, 51, 0.25);
+        }
+
+        .btn-secondary-saj {
+            background-color: var(--saj-yellow);
+            color: var(--saj-green);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-secondary-saj:hover {
+            background-color: var(--saj-yellow-hover);
+            color: var(--saj-green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(241, 176, 0, 0.35);
+        }
+
+        .btn-wa-pulse {
+            animation: waPulse 2s infinite;
+        }
+
+        @keyframes waPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Top Bar Promo */
+        .top-bar-promo {
+            background-color: var(--saj-green);
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* Loading Screen Animation */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--saj-green);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo-fill-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-fill-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            animation: pulseGlow 1.8s infinite ease-in-out;
+        }
+
+        .logo-fill-bar-wrapper {
+            width: 160px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .logo-fill-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--saj-yellow), #ffe066);
+            border-radius: 10px;
+            animation: logoFill 1.5s ease-in-out forwards;
+        }
+
+        @keyframes logoFill {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 8px rgba(241, 176, 0, 0.4));
+            }
+
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 20px rgba(241, 176, 0, 0.8));
+            }
+        }
+
+        /* Promo Hero Section */
+        .promo-hero-section {
+            background: linear-gradient(135deg, #003333 0%, #001f1f 100%);
+            color: white;
+            padding: 70px 0 140px 0; /* Jarak bawah diperbesar untuk tempat mengambang flyer */
+            position: relative;
+            overflow: visible; /* Membiarkan flyer menyeberang keluar dari section hijau */
+        }
+
+        .promo-hero-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(241, 176, 0, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+
+        /* Style Flyer Mengambang Lebih Besar & Presisi */
+        .hero-parallax-flyer {
+            position: absolute;
+            bottom: -210px; /* Offset turun lebih fleksibel karena flyer lebih besar */
+            left: 50%;
+            transform: translateX(-50%) rotate(-4deg);
+            width: 420px; /* Diperbesar dari sebelumnya 260px */
+            max-width: 85%;
+            opacity: 1;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0px 18px 35px rgba(0,0,0,0.35));
+        }
+
+        /* Penyesuaian Padding Section Hero & Benefit */
+        .promo-hero-section {
+            background: linear-gradient(135deg, #003333 0%, #001f1f 100%);
+            color: white;
+            padding: 70px 0 180px 0; /* Tambah padding bawah agar ruang flyer cukup */
+            position: relative;
+            overflow: visible;
+        }
+
+        .benefit-section {
+            padding-top: 240px !important; /* Memberi nafas cukup lega di atas "KEUNTUNGAN SPESIAL" */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsif untuk Mobile */
+            @media (max-width: 768px) {
+                .hero-parallax-flyer { 
+                width: 300px; 
+                bottom: -150px; 
+                }
+                .benefit-section { 
+                padding-top: 180px !important; 
+                }
+            }
+        .promo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(241, 176, 0, 0.15);
+            border: 1px solid var(--saj-yellow);
+            color: var(--saj-yellow);
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 6px 18px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .promo-period-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--saj-yellow);
+            padding: 12px 20px;
+            border-radius: 0 12px 12px 0;
+            display: inline-block;
+        }
+
+        /* Benefit Cards */
+        .benefit-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 24px;
+            height: 100%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,51,51,0.06);
+            transition: all 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,51,51,0.12);
+            border-color: var(--saj-yellow);
+        }
+        .benefit-icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: var(--saj-light-green);
+            color: var(--saj-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        /* Promo Package Cards */
+        .promo-package-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .promo-package-card.popular {
+            border-color: var(--saj-yellow);
+            box-shadow: 0 12px 32px rgba(241, 176, 0, 0.2);
+        }
+        .package-badge-top {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background: var(--saj-yellow);
+            color: var(--saj-green);
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .price-normal {
+            text-decoration: line-through;
+            color: var(--saj-text-muted);
+            font-size: 0.95rem;
+        }
+        .price-promo {
+            color: var(--saj-green);
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+        .savings-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .savings-domba-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Step Claim Card */
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            height: 100%;
+            border: 1px solid #eef2f2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .step-num-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--saj-green);
+            color: var(--saj-yellow);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        /* Terms Accordion / Box */
+        .terms-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px dashed var(--saj-green);
+        }
+
+        /* Floating WA Button */
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .promo-hero-section { padding: 50px 0 110px 0; }
+            .promo-hero-section h1 { font-size: 1.8rem; }
+            .price-promo { font-size: 1.5rem; }
+            .hero-parallax-flyer { width: 210px; bottom: -120px; }
+            .benefit-section { padding-top: 130px !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- 100 HTML -->
+    <!-- ========================================================= -->
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="logo-fill-container">
+            <img src="https://raw.githubusercontent.com/ABEEE-666/SAJ-Assets/refs/heads/main/logo/logo.svg"
+                alt="SAJ Logo Loading" class="logo-fill-img">
+        </div>
+        <div class="logo-fill-bar-wrapper">
+            <div class="logo-fill-bar"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app"></div>
+
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <!-- ========================================================= -->
+    <!-- 300 CONFIG & ENGINE JS -->
+    <!-- ========================================================= -->
+    <script>
+        /****************************************************************
+        300 CONFIG
+        Pusat data halaman promo (Config-Driven Architecture).
+        Object utama: CONFIG.campaign
+        SAFE TO EDIT: YES
+        ****************************************************************/
+        const config = {
+            brand: {
+                name: "Saung Abah Jajat",
+                tagline: "Layanan Aqiqah Praktis & Syar'i SAJ",
+                logoText: "SAJ AQIQAH"
+            },
+            whatsapp: "6281286159015", // Ganti dengan nomor WA resmi SAJ
+            loadingScreen: {
+                enabled: true,
+                minDuration: 600
+            },
+            topBar: {
+                active: true,
+                text: "🔥 KLAIM PROMO SPECIAL AQIQAH BULAN INI — POTONGAN HINGGA RP 600.000! 🔥"
+            },
+            
+            /* =================================================== */
+            /* CAMPAIGN CONFIG OBJECT (Bisa diganti per Promo) */
+            /* =================================================== */
+            campaign: {
+                active: true,
+                code: "PROMO-SAJ-600K",
+                badge: "⚡ PROMO SPESIAL PAYDAY JULI 2026 ⚡",
+                title: "Aqiqah Praktis Siap Saji, Diskon Hemat s/d Rp 600.000!",
+                subtitle: "Nikmati kemudahan tasyakuran aqiqah putra-putri tercinta dengan olahan daging lezat, bonus souvenir lengkap, dan gratis ongkir SEJABODETABEK. Promo terbatas, segera klaim sebelum kuota habis!",
+                flyerImage: "https://raw.githubusercontent.com/ABEEE-666/LP-Engine/refs/heads/main/LP-Engine-V1/SAJ-LP/image/gallery/flyer_promo_payday_julagu26.webp",
+                startDate: "2026-07-25",
+                endDate: "2026-08-10",
+                periodText: "Periode Promo: 25 Juli - 10 Agustus 2026 (Kuota Terbatas!)",
+                whatsappMessage: "Halo SAJ Aqiqah, saya ingin klaim Promo Diskon (Kode: PROMO-SAJ-PAYDAYSALE7) untuk acara Aqiqah 🙏",
+                
+                // Section 2: Benefit Promo
+                benefits: [
+                    {
+                        icon: "fa-solid fa-gift",
+                        title: "Bonus Souvenir Boneka Domba & Mug Eksklusif",
+                        desc: "Dapatkan beragam souvenir menarik seperti Sertifikat Aqiqah, Boneka Domba & Mug Eksklusif, GRATIS untuk si kecil."
+                    },
+                    {
+                        icon: "fa-solid fa-video",
+                        title: "Free Dokumentasi Foto & Video Penyembelihan",
+                        desc: "Foto dan rekaman video penyembelihan menyebutkan nama si kecil via WhatsApp."
+                    },
+                    {
+                        icon: "fa-solid fa-truck-fast",
+                        title: "Gratis Ongkir SEJABODETABEK",
+                        desc: "Pesanan siap saji diantar langsung tepat waktu sampai lokasi tanpa biaya tambahan."
+                    },
+                    {
+                        icon: "fa-solid fa-bowl-food",
+                        title: "Olahan Dijamin Lezat & Empuk",
+                        desc: "Dimasak oleh koki berpengalaman, dijamin lezat, tidak bau prengus, & higienis."
+                    }
+                ],
+
+                // Section 3: Paket Promo
+                packages: [
+                    {
+                        name: "Paket Hemat Promo Aqiqah Perempuan",
+                        portion: "75 Box Bento | 1 Ekor Domba Betina",
+                        normalPrice: 2700000,
+                        promoPrice: 2500000,
+                        savings: 200000,
+                        savings_domba: 100000,
+                        badge: "PALING HEMAT",
+                        popular: false,
+                        features: [
+                            "1 Ekor Domba Betina",
+                            "75 Box Bento | Paket Hemat",
+                            "Free Dokumentasi Foto & Video",
+                            "Free Sertifikat Frame Eksklusif",
+                            "Free Ongkir SEJABODETABEK"
+                        ]
+                    },
+                    {
+                        name: "Paket Spesial Promo Aqiqah Perempuan",
+                        portion: "125 Box Eksklusif | 1 Ekor Domba Betina",
+                        normalPrice: 5500000,
+                        promoPrice: 5300000,
+                        savings: 300000,
+                        savings_domba: 100000,
+                        //badge: "PALING LENGKAP",
+                        popular: false,
+                        features: [
+                            "1 Ekor Domba Betina",
+                            "125 Box Eksklusif | Paket Spesial",
+                            "Free Bonus Boneka Domba SAJ",
+                            "Free Sertifikat Mug Eksklusif",
+                            "Free Dokumentasi Foto & Video Penyembelihan",
+                            "Free Ongkir SEJABODETABEK"
+                        ]
+                    },
+                    {
+                        name: "Paket Hemat Promo Aqiqah Laki-Laki",
+                        portion: "80 Box Bento | 2 Ekor Domba Betina",
+                        normalPrice: 3600000,
+                        promoPrice: 3400000,
+                        savings: 200000,
+                        savings_domba: 200000,
+                        //badge: "POPULAR",
+                        popular: false,
+                        features: [
+                            "2 Ekor Domba Betina",
+                            "80 Box Bento | Paket Hemat",
+                            "Free Frame Sertifikat + Boneka Domba",
+                            "Free Dokumentasi Video Penyembelihan",
+                            "Free Kantong Plastik & Kartu Ucapan",
+                            "Free Ongkir SEJABODETABEK"
+                        ]
+                    },
+                    {
+                        name: "Paket Reguler Promo Aqiqah Laki-Laki",
+                        portion: "100 Box Eksklusif | 2 Ekor Domba Betina",
+                        normalPrice: 5400000,
+                        promoPrice: 5100000,
+                        savings: 300000,
+                        savings_domba: 200000,
+                        //badge: "PREMIUM SULTAN",
+                        popular: false,
+                        features: [
+                            "2 Ekor Domba Betina",
+                            "100 Box Eksklusif | Paket Reguler",
+                            "Free Frame Sertifikat + Boneka Domba",
+                            "Free Dokumentasi Video Penyembelihan",
+                            "Free Kantong Plastik & Kartu Ucapan",
+                            "Free Ongkir SEJABODETABEK"
+                        ]
+                    },
+                    {
+                        name: "Paket Spesial Promo Aqiqah Laki-Laki",
+                        portion: "150 Box Eksklusif | 2 Ekor Domba Betina",
+                        normalPrice: 7150000,
+                        promoPrice: 6750000,
+                        savings: 400000,
+                        savings_domba: 200000,
+                        badge: "SUPER VALUE",
+                        popular: true,
+                        features: [
+                            "2 Ekor Domba Betina",
+                            "150 Box Eksklusif | Paket Spesial",
+                            "Bonus Olahan Ayam",
+                            "Free Frame Sertifikat + Boneka Domba",
+                            "Free Dokumentasi Video Penyembelihan",
+                            "Free Kantong Plastik & Kartu Ucapan",
+                            "Free Ongkir SEJABODETABEK"
+                        ]
+                    }
+                ],
+
+                // Section 4: Cara Klaim Promo (4 Steps)
+                steps: [
+                    {
+                        num: "01",
+                        icon: "fa-solid fa-list-check",
+                        title: "Pilih Paket Promo",
+                        desc: "Tentukan pilihan paket aqiqah promo yang sesuai dengan kebutuhan porsi keluarga."
+                    },
+                    {
+                        num: "02",
+                        icon: "fa-brands fa-whatsapp",
+                        title: "Klik Klaim via WA",
+                        desc: "Tekan tombol klaim untuk terhubung langsung dengan Customer Service resmi SAJ."
+                    },
+                    {
+                        num: "03",
+                        icon: "fa-solid fa-calendar-day",
+                        title: "Tentukan Tanggal Acara",
+                        desc: "Isi data ananda & jadwalkan tanggal pengiriman pesanan (Bisa booking bulan depan)."
+                    },
+                    {
+                        num: "04",
+                        icon: "fa-solid fa-heart-circle-check",
+                        title: "Terima & Tasyakuran",
+                        desc: "Pesanan siap saji tiba di lokasi dengan aman beserta seluruh paket bonus promo!"
+                    }
+                ],
+
+                // Section 5: Syarat & Ketentuan
+                terms: [
+                    "Promo berlaku khusus untuk pemesanan yang dikonfirmasi selama periode promo berlangsung.",
+                    "Diskon dan bonus souvenir otomatis didapatkan saat melakukan reservasi melalui Customer Service WhatsApp.",
+                    "Pelanggan diperbolehkan melakukan booking tanggal pelaksanaan aqiqah untuk bulan berikutnya.",
+                    "Fasilitas Gratis Pengiriman mencakup wilayah DKI Jakarta, Bogor, Depok, Tangerang, dan Bekasi.",
+                    "Promo ini terbatas kuota harian dan tidak dapat digabungkan dengan promo khusus lainnya."
+                ],
+
+                // Section 6: Closing CTA
+                closingCTA: {
+                    heading: "Klaim Voucher Diskon Promo Sekarang Sebelum Kuota Habis!",
+                    subheading: "Konsultasikan kebutuhan aqiqah buah hati Anda bersama tim SAJ secara gratis.",
+                    buttonText: "Klaim Diskon Promo via WhatsApp"
+                }
+            },
+            // Bottom Bar Promo
+            bottomBar: {
+                enabled: true,
+                text: "Kembali ke beranda",
+                link: "https://saungabahjajat.com" // <-- ganti 'url' jadi 'link'
+            },
+
+            footer: {
+                copyright: "© 2026 Saung Abah Jajat (SAJ Aqiqah). All Rights Reserved."
+            }
+        };
+
+
+        /****************************************************************
+        400 ENGINE OBJECT
+        Core engine object untuk mengelola registry dan queue render.
+        SAFE TO EDIT: NO
+        ****************************************************************/
+        const ENGINE = {
+            version: '1.0.0',
+            name: 'LP Engine Sales Campaign',
+            registry: [],
+            renderQueue: [],
+            helpers: {}
+        };
+
+
+        /****************************************************************
+        500 HELPER FUNCTIONS
+        Fungsi pembantu terpusat untuk memformat angka & URL.
+        SAFE TO EDIT: NO
+        ****************************************************************/
+        
+        // Helper formatting Rupiah
+        const formatRupiah = (val) => {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
+        };
+
+        // Helper WA Link Generator
+        const createWaLink = (number, text) => {
+            return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+        };
+
+        // Register Helpers
+        ENGINE.helpers.formatRupiah = formatRupiah;
+        ENGINE.helpers.createWaLink = createWaLink;
+
+
+        /****************************************************************
+        600 COMPONENTS
+        Komponen UI yang menyusun tampilan promo.html.
+        Semua komponen membaca data dari CONFIG.campaign.
+        SAFE TO EDIT: YES
+        ****************************************************************/
+
+        // 1. Top Bar Component
+        const renderTopBar = () => {
+            if (!config.topBar || !config.topBar.active) return '';
+            return `
+                <div class="top-bar-promo">
+                    ${config.topBar.text}
+                </div>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderTopBar', fn: renderTopBar, description: 'Top Bar Promo Banner' });
+
+
+        // 2. Promo Hero Component (Flyer dipindah mengambang di bawah CTA)
+        const renderPromoHero = () => {
+            const c = config.campaign;
+            const waUrl = createWaLink(config.whatsapp, c.whatsappMessage);
+
+            return `
+                <section class="promo-hero-section">
+                    <div class="container text-center text-lg-start position-relative" style="z-index: 2;">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                                <div class="promo-badge mb-3">
+                                    <i class="fa-solid fa-fire text-secondary-saj"></i> ${c.badge}
+                                </div>
+                                <h1 class="display-5 fw-bold text-white mb-3">
+                                    ${c.title}
+                                </h1>
+                                <p class="lead text-white-50 mb-4 px-md-4">
+                                    ${c.subtitle}
+                                </p>
+                                
+                                <div class="promo-period-box mb-4">
+                                    <i class="fa-regular fa-clock me-2 text-secondary-saj"></i>
+                                    <span class="text-white fw-bold">${c.periodText}</span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                                    <a href="${waUrl}" target="_blank" class="btn btn-secondary-saj btn-wa-pulse fs-5">
+                                        <i class="fa-brands fa-whatsapp fs-4"></i> Klaim Diskon Promo Sekarang
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flyer Parallax Mengambang Di Perbatasan BG Hijau & Putih -->
+                    ${c.flyerImage ? `<img src="${c.flyerImage}" alt="Flyer Promo SAJ" class="hero-parallax-flyer" id="heroParallaxFlyer">` : ''}
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoHero', fn: renderPromoHero, description: 'Promo Hero Banner' });
+
+
+        // 3. Benefit Promo Component
+        const renderPromoBenefits = () => {
+            const benefits = config.campaign.benefits;
+            if (!benefits || !benefits.length) return '';
+
+            const itemsHtml = benefits.map((item, idx) => `
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${idx * 100}">
+                    <div class="benefit-card">
+                        <div class="benefit-icon-box">
+                            <i class="${item.icon}"></i>
+                        </div>
+                        <h5 class="fw-bold text-primary-saj mb-2">${item.title}</h5>
+                        <p class="text-muted small mb-0">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section class="py-5 bg-light benefit-section">
+                    <div class="container py-4">
+                        <div class="text-center mb-5" data-aos="fade-up">
+                            <span class="text-secondary-saj fw-bold text-uppercase tracking-wider">Keuntungan Spesial</span>
+                            <h2 class="fw-bold text-primary-saj mt-1">Benefit Ekstra Selama Promo</h2>
+                            <p class="text-muted">Dapatkan berbagai bonus tambahan tanpa biaya tersembunyi</p>
+                        </div>
+                        <div class="row g-4">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoBenefits', fn: renderPromoBenefits, description: 'Benefit Promo Section' });
+
+
+        // 4. Promo Packages Component
+        const renderPromoPackages = () => {
+            const packages = config.campaign.packages;
+            if (!packages || !packages.length) return '';
+
+            const cardsHtml = packages.map((pkg, idx) => {
+                const waMsg = `Halo SAJ, saya berminat dengan ${pkg.name} (${formatRupiah(pkg.promoPrice)}). Mohon info lengkapnya 🙏`;
+                const waUrl = createWaLink(config.whatsapp, waMsg);
+
+                const featuresHtml = pkg.features.map(f => `
+                    <li class="mb-2 d-flex align-items-center gap-2 small text-secondary-dark">
+                        <i class="fa-solid fa-circle-check text-success"></i> ${f}
+                    </li>
+                `).join('');
+
+                return `
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 150}">
+                        <div class="promo-package-card ${pkg.popular ? 'popular' : ''} p-4">
+                            ${pkg.badge ? `<div class="package-badge-top">${pkg.badge}</div>` : ''}
+                            
+                            <h4 class="fw-bold text-primary-saj mb-1">${pkg.name}</h4>
+                            <div class="text-muted small mb-3"><i class="fa-solid fa-box-open me-1"></i> ${pkg.portion}</div>
+                            
+                            <div class="mb-3 p-3 rounded bg-light">
+                                <div class="price-normal mb-1">Harga Normal: ${formatRupiah(pkg.normalPrice)}</div>
+                                <div class="price-promo mb-1">${formatRupiah(pkg.promoPrice)}</div>
+                                <div class="savings-badge mb-1">
+                                    <i class="fa-solid fa-tags me-1"></i> Hemat ${formatRupiah(pkg.savings)}
+                                </div>
+                                <div class="savings-domba-badge">
+                                    <i class="fa-solid fa-tags me-1"></i> + ${formatRupiah(pkg.savings_domba)} *Jika Upgrade Domba Jantan
+                                </div>
+                            </div>
+
+                            <ul class="list-unstyled mb-4 flex-grow-1">
+                                ${featuresHtml}
+                            </ul>
+
+                            <a href="${waUrl}" target="_blank" class="btn ${pkg.popular ? 'btn-secondary-saj' : 'btn-primary-saj'} w-100 mt-auto">
+                                <i class="fa-brands fa-whatsapp"></i> Ambil Paket Promo
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <section class="py-5">
+                    <div class="container py-4">
+                        <div class="text-center mb-5" data-aos="fade-up">
+                            <span class="badge bg-secondary-saj text-dark px-3 py-2 rounded-pill fw-bold mb-2">Pilihan Terbaik</span>
+                            <h2 class="fw-bold text-primary-saj">Paket Aqiqah Spesial Promo</h2>
+                            <p class="text-muted">Harga spesial potongan langsung hanya selama masa promo</p>
+                        </div>
+                        <div class="row g-4 align-items-stretch">
+                            ${cardsHtml}
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoPackages', fn: renderPromoPackages, description: 'Promo Packages Section' });
+
+
+        // 5. Cara Klaim Promo Component
+        const renderPromoClaimSteps = () => {
+            const steps = config.campaign.steps;
+            if (!steps || !steps.length) return '';
+
+            const stepsHtml = steps.map((s, idx) => `
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${idx * 100}">
+                    <div class="step-card text-center">
+                        <div class="step-num-badge mx-auto">${s.num}</div>
+                        <i class="${s.icon} fs-2 text-primary-saj mb-3"></i>
+                        <h5 class="fw-bold text-primary-saj mb-2">${s.title}</h5>
+                        <p class="text-muted small mb-0">${s.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section class="py-5 bg-light">
+                    <div class="container py-4">
+                        <div class="text-center mb-5" data-aos="fade-up">
+                            <span class="text-secondary-saj fw-bold text-uppercase">Mudah & Cepat</span>
+                            <h2 class="fw-bold text-primary-saj mt-1">4 Langkah Mudah Klaim Promo</h2>
+                            <p class="text-muted">Proses pemesanan praktis langsung via WhatsApp</p>
+                        </div>
+                        <div class="row g-4">
+                            ${stepsHtml}
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoClaimSteps', fn: renderPromoClaimSteps, description: 'Claim Steps Section' });
+
+
+        // 6. Syarat & Ketentuan Component
+        const renderPromoTerms = () => {
+            const terms = config.campaign.terms;
+            if (!terms || !terms.length) return '';
+
+            const termsList = terms.map(t => `
+                <li class="mb-3 d-flex align-items-start gap-3">
+                    <i class="fa-solid fa-circle-info text-secondary-saj fs-5 mt-1"></i>
+                    <span class="text-secondary-dark">${t}</span>
+                </li>
+            `).join('');
+
+            return `
+                <section class="py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9" data-aos="fade-up">
+                                <div class="terms-box">
+                                    <h4 class="fw-bold text-primary-saj mb-4 text-center">
+                                        <i class="fa-solid fa-file-contract me-2 text-secondary-saj"></i> Syarat & Ketentuan Promo
+                                    </h4>
+                                    <ul class="list-unstyled mb-0">
+                                        ${termsList}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoTerms', fn: renderPromoTerms, description: 'Terms & Conditions Section' });
+
+
+        // 7. CTA Penutup Component
+        const renderPromoClosingCTA = () => {
+            const cta = config.campaign.closingCTA;
+            const waUrl = createWaLink(config.whatsapp, config.campaign.whatsappMessage);
+
+            return `
+                <section class="py-5 bg-primary-saj text-white text-center position-relative">
+                    <div class="container py-4 position-relative" style="z-index: 2;" data-aos="zoom-in">
+                        <h2 class="fw-bold mb-3">${cta.heading}</h2>
+                        <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 650px;">${cta.subheading}</p>
+                        <a href="${waUrl}" target="_blank" class="btn btn-secondary-saj btn-wa-pulse fs-5">
+                            <i class="fa-brands fa-whatsapp fs-4"></i> ${cta.buttonText}
+                        </a>
+                    </div>
+                </section>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoClosingCTA', fn: renderPromoClosingCTA, description: 'Closing CTA Section' });
+
+        /****************************************************************
+COMPONENT: renderBottomBar
+DESCRIPTION: Bottom bar non-floating di paling bawah halaman dengan warna hijau SAJ.
+DEPENDS_ON: config.bottomBar
+SAFE TO EDIT: YES
+****************************************************************/
+        const renderBottomBar = () => {
+            if (!config.bottomBar || !config.bottomBar.enabled) return '';
+            return `
+                <div class="bottom-bar-saj text-center">
+                    <div class="container">
+                        <a href="${config.bottomBar.link}" class="d-inline-block text-decoration-none">
+                        ${config.bottomBar.text}
+                        </a>
+                    </div>
+                </div>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderBottomBar', fn: renderBottomBar, description: 'Bottom bar promo non-floating' });
+
+        // 8. Footer Component
+        const renderPromoFooter = () => {
+            const waUrl = createWaLink(config.whatsapp, config.campaign.whatsappMessage);
+            return `
+                <footer class="py-4 bg-dark text-white-50 text-center small">
+                    <div class="container">
+                        <p class="mb-0">${config.footer.copyright}</p>
+                    </div>
+                </footer>
+                
+                <!-- Floating WhatsApp CTA Button -->
+                <a href="${waUrl}" class="floating-wa" target="_blank" aria-label="Klaim Promo WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            `;
+        };
+        ENGINE.registry.push({ name: 'renderPromoFooter', fn: renderPromoFooter, description: 'Footer Component' });
+
+
+        /****************************************************************
+        700 RENDER ENGINE
+        Menyusun seluruh komponen promo menjadi halaman utuh.
+        SAFE TO EDIT: NO
+        ****************************************************************/
+        ENGINE.renderQueue = [
+            renderTopBar,
+            renderPromoHero,
+            renderPromoBenefits,
+            renderPromoPackages,
+            renderPromoClaimSteps,
+            renderPromoTerms,
+            renderPromoClosingCTA,
+            renderBottomBar,
+            renderPromoFooter
+        ];
+
+        const runRenderEngine = () => {
+            const app = document.getElementById('app');
+            const html = ENGINE.renderQueue.map(fn => {
+                try {
+                    return fn();
+                } catch (e) {
+                    console.error('[LP Engine] Error rendering ' + fn.name + ':', e);
+                    return '';
+                }
+            }).join('');
+            app.innerHTML = html;
+        };
+
+
+        /****************************************************************
+        800 APP INITIALIZATION
+        Entry point inisialisasi aplikasi promo.html.
+        SAFE TO EDIT: NO
+        ****************************************************************/
+        document.addEventListener('DOMContentLoaded', () => {
+            const startTime = Date.now();
+            runRenderEngine();
+
+            // Parallax Scroll Effect untuk Flyer di Antara Hero & Benefit
+             const flyerEl = document.getElementById('heroParallaxFlyer');
+            if (flyerEl) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.scrollY;
+                    if (scrolled < 1000) {
+                        const speed = 0.05; // Gerakan parallax yang halus & elegan
+                        const yPos = scrolled * speed;
+                        flyerEl.style.transform = `translate(-50%, ${yPos}px) rotate(-4deg)`;
+                    }
+                });
+            }
+
+            // Init AOS Animation Library
+            try {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({ duration: 800, once: true, offset: 50 });
+                }
+            } catch (e) {
+                console.error('[LP Engine] AOS init error:', e);
+            }
+
+            // Selesai Loading Screen Animation
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen && config.loadingScreen && config.loadingScreen.enabled) {
+                const minDuration = config.loadingScreen.minDuration || 600;
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = Math.max(0, minDuration - elapsedTime);
+
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        loadingScreen.remove();
+                    }, 600);
+                }, remainingTime);
+            } else if (loadingScreen) {
+                loadingScreen.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>

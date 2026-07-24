@@ -10,7 +10,7 @@ Roadmap digunakan untuk memantau progres pengembangan engine maupun fitur Landin
 
 Project
 
-SAJ Landing Page
+SAJ Landing Page / LP Engine Multi-Brand
 
 Engine
 
@@ -18,7 +18,7 @@ LP Engine v1.0
 
 Landing Page Version
 
-2.6.0
+2.7.0
 
 Status
 
@@ -26,7 +26,7 @@ Production
 
 Current Phase
 
-Phase 4 ✅ Completed
+Phase 5 ✅ Completed
 
 ---
 
@@ -83,8 +83,7 @@ Pencapaian
 
 ---
 
-## Phase 3
-Engine Improvement
+## Phase 3 — Engine Improvement ✅
 
 Status
 
@@ -111,8 +110,7 @@ Menyempurnakan LP Engine agar lebih modular tanpa menghilangkan konsep Single HT
 
 ---
 
-
-## Phase 4 — UI Improvement & Content Polish
+## Phase 4 — UI Improvement & Content Polish ✅
 
 Status
 
@@ -133,27 +131,47 @@ Meningkatkan tampilan visual, interaktivitas paket harga, serta kenyamanan pengg
 
 ---
 
-## Phase 5 — Content Management
+## Phase 5 — Promo Landing Page Engine ✅
 
 Status
 
-Planned
+✅ Completed
 
 Target
 
-Mempermudah proses perubahan konten.
+Membangun arsitektur dedicated Promo Sales Landing Page berbasis LP Engine v1.0 (`promopdjuli26.html`) yang siap pakai untuk berbagai campaign promo/diskon secara cepat & fleksibel.
 
-Rencana
+Pencapaian
 
-- Struktur CONFIG yang lebih modular.
-- Validasi data CONFIG.
-- Helper untuk asset.
-- Helper untuk CTA.
-- Helper untuk formatting.
+- [x] Dedicated Promo Sales Page Architecture (`promopdjuli26.html`)
+- [x] Campaign Config Object (`config.campaign` untuk kontrol badge, flyer, diskon, kuota & pesan WA khusus promo)
+- [x] Dual CTA Hero & Interactive Countdown / Promo Badge
+- [x] Custom Promo Package Cards dengan Komparasi Harga Normal vs Harga Promo & Savings
+- [x] Section Benefit Promo, Step Cara Klaim, Syarat & Ketentuan Accordion, dan Sticky Bottom CTA Bar Mobile
+- [x] Parallax Scroll Effect pada Flyer Promo
 
 ---
 
-## Phase 6 — Analytics & Marketing
+## Phase 6 — Content Management & Multi-Brand Expansion (Qurban Berkah)
+
+Status
+
+Planned / In Progress
+
+Target
+
+Mempermudah pengelolaan konten serta memperluas fleksibilitas LP Engine untuk mendukung Multi-Brand (termasuk Qurban Berkah dan lini usaha lainnya).
+
+Rencana
+
+- Adaptasi arsitektur LP Engine untuk brand **Qurban Berkah**.
+- Struktur CONFIG multi-brand yang modular.
+- Validasi data CONFIG & Asset Helper.
+- System Helper untuk Multi-CTA & Custom Campaign Formatting.
+
+---
+
+## Phase 7 — Analytics & Marketing
 
 Status
 
@@ -174,7 +192,7 @@ Rencana
 
 ---
 
-## Phase 7 — SEO Improvement
+## Phase 8 — SEO Improvement
 
 Status
 
@@ -195,7 +213,7 @@ Rencana
 
 ---
 
-## Phase 8 — Future Integration
+## Phase 9 — Future Integration
 
 Status
 
@@ -222,10 +240,10 @@ LP Engine akan menjadi standar pengembangan seluruh Landing Page perusahaan.
 Target implementasi:
 
 - SAJ Landing Page
+- QurbanBerkah (Multi-Brand Expansion)
 - UMAR Travel
 - Meat Theory
 - Umar Oud
-- QurbanBerkah
 - Landing Page Client
 
 Seluruh project diharapkan menggunakan arsitektur, dokumentasi, dan workflow yang konsisten sehingga proses maintenance dan pengembangan menjadi lebih cepat.
@@ -240,7 +258,8 @@ Seluruh project diharapkan menggunakan arsitektur, dokumentasi, dan workflow yan
 | Phase 2 — Documentation | ✅ Completed |
 | Phase 3 — Engine Improvement | ✅ Completed |
 | Phase 4 — UI Improvement & Content Polish | ✅ Completed |
-| Phase 5 — Content Management | ⏳ Planned |
-| Phase 6 — Analytics & Marketing | ⏳ Planned |
-| Phase 7 — SEO Improvement | ⏳ Planned |
-| Phase 8 — Future Integration | 🔮 Future |
+| Phase 5 — Promo Landing Page Engine (`promopdjuli26.html`) | ✅ Completed |
+| Phase 6 — Content Management & Multi-Brand (Qurban Berkah) | ⏳ Planned |
+| Phase 7 — Analytics & Marketing | ⏳ Planned |
+| Phase 8 — SEO Improvement | ⏳ Planned |
+| Phase 9 — Future Integration | 🔮 Future |
